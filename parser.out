@@ -1,0 +1,3685 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> exp
+Rule 1     exp -> frac_exp
+Rule 2     exp -> float_exp
+Rule 3     exp -> poly_exp
+Rule 4     exp -> vector_exp
+Rule 5     exp -> interp_exp
+Rule 6     exp -> lstsq_exp
+Rule 7     exp -> poly_atom frac_atom
+Rule 8     exp -> poly_atom S LPAREN INT COMMA INT RPAREN
+Rule 9     exp -> poly_atom I LPAREN INT COMMA INT RPAREN
+Rule 10    interp_exp -> IP point_list
+Rule 11    interp_exp -> IP INT point_list
+Rule 12    lstsq_exp -> LS point_list
+Rule 13    lstsq_exp -> LS MINUS point_list
+Rule 14    frac_exp -> frac_exp PLUS frac_term
+Rule 15    frac_exp -> frac_exp MINUS frac_term
+Rule 16    frac_exp -> frac_term
+Rule 17    frac_term -> frac_term TIMES frac_atom
+Rule 18    frac_term -> frac_term DIVIDE frac_atom
+Rule 19    frac_term -> frac_atom
+Rule 20    frac_atom -> int_function
+Rule 21    frac_atom -> num
+Rule 22    frac_atom -> LPAREN frac_exp RPAREN
+Rule 23    poly_exp -> poly_exp PLUS poly_term
+Rule 24    poly_exp -> poly_exp MINUS poly_term
+Rule 25    poly_exp -> poly_term
+Rule 26    poly_exp -> D poly_atom
+Rule 27    poly_exp -> I poly_atom
+Rule 28    poly_term -> poly_term TIMES poly_atom
+Rule 29    poly_term -> poly_atom
+Rule 30    poly_atom -> num X INT
+Rule 31    poly_atom -> LPAREN poly_exp RPAREN
+Rule 32    float_exp -> frac_exp PLUS float_term
+Rule 33    float_exp -> frac_exp MINUS float_term
+Rule 34    float_exp -> float_exp PLUS frac_term
+Rule 35    float_exp -> float_exp MINUS frac_term
+Rule 36    float_exp -> float_exp PLUS float_term
+Rule 37    float_exp -> float_exp MINUS float_term
+Rule 38    float_exp -> float_term
+Rule 39    float_term -> frac_term TIMES float_atom
+Rule 40    float_term -> frac_term DIVIDE float_atom
+Rule 41    float_term -> float_term TIMES frac_atom
+Rule 42    float_term -> float_term DIVIDE frac_atom
+Rule 43    float_term -> float_term TIMES float_atom
+Rule 44    float_term -> float_term DIVIDE float_atom
+Rule 45    float_term -> float_atom
+Rule 46    float_atom -> unary_function
+Rule 47    float_atom -> binary_function
+Rule 48    float_atom -> trig_function
+Rule 49    float_atom -> LPAREN float_exp RPAREN
+Rule 50    float_atom -> COMPLEX
+Rule 51    unary_function -> FUN LPAREN exp RPAREN
+Rule 52    binary_function -> FUN LPAREN exp COMMA exp RPAREN
+Rule 53    int_function -> INTFUN LPAREN INT COMMA INT RPAREN
+Rule 54    fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+Rule 55    trig_function -> TRIGFUN LPAREN exp RPAREN
+Rule 56    trig_function -> TRIGFUN LPAREN deg RPAREN
+Rule 57    vector_exp -> vector_exp PLUS vector_cross
+Rule 58    vector_exp -> vector_exp MINUS vector_cross
+Rule 59    vector_exp -> vector_cross
+Rule 60    vector_cross -> vector_cross TIMES vector
+Rule 61    vector_cross -> vector_cross TIMES num
+Rule 62    vector_cross -> vector
+Rule 63    vector -> vector_builder RBRACK
+Rule 64    vector_builder -> vector_builder COMMA num
+Rule 65    vector_builder -> LBRACK num
+Rule 66    point_list -> point_list_builder RBRACK
+Rule 67    point_list_builder -> point_list_builder COMMA LPAREN num COMMA num RPAREN
+Rule 68    point_list_builder -> LBRACK LPAREN num COMMA num RPAREN
+Rule 69    num -> INT
+Rule 70    num -> FLOAT
+Rule 71    num -> fraction_expr
+Rule 72    num -> MINUS INT
+Rule 73    num -> MINUS FLOAT
+Rule 74    num -> MINUS fraction_expr
+Rule 75    num -> INT EXL
+Rule 76    num -> num EXP INT
+Rule 77    num -> num EXP MINUS INT
+Rule 78    num -> vector vector
+Rule 79    deg -> INT DEGREE
+Rule 80    deg -> FLOAT DEGREE
+
+Terminals, with rules where they appear
+
+COMMA                : 8 9 52 53 54 64 67 67 68
+COMPLEX              : 50
+D                    : 26
+DEGREE               : 79 80
+DIVIDE               : 18 40 42 44
+EXL                  : 75
+EXP                  : 76 77
+FLOAT                : 70 73 80
+FRAC                 : 54
+FUN                  : 51 52
+I                    : 9 27
+INT                  : 8 8 9 9 11 30 53 53 69 72 75 76 77 79
+INTFUN               : 53
+IP                   : 10 11
+LBRACK               : 65 68
+LPAREN               : 8 9 22 31 49 51 52 53 54 55 56 67 68
+LS                   : 12 13
+MINUS                : 13 15 24 33 35 37 58 72 73 74 77
+PLUS                 : 14 23 32 34 36 57
+RBRACK               : 63 66
+RPAREN               : 8 9 22 31 49 51 52 53 54 55 56 67 68
+S                    : 8
+TIMES                : 17 28 39 41 43 60 61
+TRIGFUN              : 55 56
+X                    : 30
+error                : 
+
+Nonterminals, with rules where they appear
+
+binary_function      : 47
+deg                  : 56
+exp                  : 51 52 52 55 0
+float_atom           : 39 40 43 44 45
+float_exp            : 2 34 35 36 37 49
+float_term           : 32 33 36 37 38 41 42 43 44
+frac_atom            : 7 17 18 19 41 42
+frac_exp             : 1 14 15 22 32 33 54 54
+frac_term            : 14 15 16 17 18 34 35 39 40
+fraction_expr        : 71 74
+int_function         : 20
+interp_exp           : 5
+lstsq_exp            : 6
+num                  : 21 30 61 64 65 67 67 68 68 76 77
+point_list           : 10 11 12 13
+point_list_builder   : 66 67
+poly_atom            : 7 8 9 26 27 28 29
+poly_exp             : 3 23 24 31
+poly_term            : 23 24 25 28
+trig_function        : 48
+unary_function       : 46
+vector               : 60 62 78 78
+vector_builder       : 63 64
+vector_cross         : 57 58 59 60 61
+vector_exp           : 4 57 58
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . exp
+    (1) exp -> . frac_exp
+    (2) exp -> . float_exp
+    (3) exp -> . poly_exp
+    (4) exp -> . vector_exp
+    (5) exp -> . interp_exp
+    (6) exp -> . lstsq_exp
+    (7) exp -> . poly_atom frac_atom
+    (8) exp -> . poly_atom S LPAREN INT COMMA INT RPAREN
+    (9) exp -> . poly_atom I LPAREN INT COMMA INT RPAREN
+    (14) frac_exp -> . frac_exp PLUS frac_term
+    (15) frac_exp -> . frac_exp MINUS frac_term
+    (16) frac_exp -> . frac_term
+    (32) float_exp -> . frac_exp PLUS float_term
+    (33) float_exp -> . frac_exp MINUS float_term
+    (34) float_exp -> . float_exp PLUS frac_term
+    (35) float_exp -> . float_exp MINUS frac_term
+    (36) float_exp -> . float_exp PLUS float_term
+    (37) float_exp -> . float_exp MINUS float_term
+    (38) float_exp -> . float_term
+    (23) poly_exp -> . poly_exp PLUS poly_term
+    (24) poly_exp -> . poly_exp MINUS poly_term
+    (25) poly_exp -> . poly_term
+    (26) poly_exp -> . D poly_atom
+    (27) poly_exp -> . I poly_atom
+    (57) vector_exp -> . vector_exp PLUS vector_cross
+    (58) vector_exp -> . vector_exp MINUS vector_cross
+    (59) vector_exp -> . vector_cross
+    (10) interp_exp -> . IP point_list
+    (11) interp_exp -> . IP INT point_list
+    (12) lstsq_exp -> . LS point_list
+    (13) lstsq_exp -> . LS MINUS point_list
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (39) float_term -> . frac_term TIMES float_atom
+    (40) float_term -> . frac_term DIVIDE float_atom
+    (41) float_term -> . float_term TIMES frac_atom
+    (42) float_term -> . float_term DIVIDE frac_atom
+    (43) float_term -> . float_term TIMES float_atom
+    (44) float_term -> . float_term DIVIDE float_atom
+    (45) float_term -> . float_atom
+    (28) poly_term -> . poly_term TIMES poly_atom
+    (29) poly_term -> . poly_atom
+    (60) vector_cross -> . vector_cross TIMES vector
+    (61) vector_cross -> . vector_cross TIMES num
+    (62) vector_cross -> . vector
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (63) vector -> . vector_builder RBRACK
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    D               shift and go to state 6
+    I               shift and go to state 30
+    IP              shift and go to state 4
+    LS              shift and go to state 15
+    LPAREN          shift and go to state 3
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    COMPLEX         shift and go to state 26
+    FRAC            shift and go to state 8
+    INTFUN          shift and go to state 7
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    LBRACK          shift and go to state 19
+
+    poly_exp                       shift and go to state 2
+    fraction_expr                  shift and go to state 21
+    frac_exp                       shift and go to state 22
+    int_function                   shift and go to state 16
+    poly_term                      shift and go to state 18
+    trig_function                  shift and go to state 33
+    vector                         shift and go to state 14
+    binary_function                shift and go to state 27
+    vector_builder                 shift and go to state 20
+    unary_function                 shift and go to state 28
+    frac_atom                      shift and go to state 9
+    vector_exp                     shift and go to state 29
+    interp_exp                     shift and go to state 10
+    lstsq_exp                      shift and go to state 31
+    num                            shift and go to state 11
+    float_exp                      shift and go to state 12
+    poly_atom                      shift and go to state 32
+    float_term                     shift and go to state 13
+    float_atom                     shift and go to state 35
+    exp                            shift and go to state 34
+    vector_cross                   shift and go to state 25
+    frac_term                      shift and go to state 17
+
+state 1
+
+    (55) trig_function -> TRIGFUN . LPAREN exp RPAREN
+    (56) trig_function -> TRIGFUN . LPAREN deg RPAREN
+
+    LPAREN          shift and go to state 37
+
+
+state 2
+
+    (3) exp -> poly_exp .
+    (23) poly_exp -> poly_exp . PLUS poly_term
+    (24) poly_exp -> poly_exp . MINUS poly_term
+
+    $end            reduce using rule 3 (exp -> poly_exp .)
+    RPAREN          reduce using rule 3 (exp -> poly_exp .)
+    COMMA           reduce using rule 3 (exp -> poly_exp .)
+    PLUS            shift and go to state 39
+    MINUS           shift and go to state 38
+
+
+state 3
+
+    (31) poly_atom -> LPAREN . poly_exp RPAREN
+    (22) frac_atom -> LPAREN . frac_exp RPAREN
+    (49) float_atom -> LPAREN . float_exp RPAREN
+    (23) poly_exp -> . poly_exp PLUS poly_term
+    (24) poly_exp -> . poly_exp MINUS poly_term
+    (25) poly_exp -> . poly_term
+    (26) poly_exp -> . D poly_atom
+    (27) poly_exp -> . I poly_atom
+    (14) frac_exp -> . frac_exp PLUS frac_term
+    (15) frac_exp -> . frac_exp MINUS frac_term
+    (16) frac_exp -> . frac_term
+    (32) float_exp -> . frac_exp PLUS float_term
+    (33) float_exp -> . frac_exp MINUS float_term
+    (34) float_exp -> . float_exp PLUS frac_term
+    (35) float_exp -> . float_exp MINUS frac_term
+    (36) float_exp -> . float_exp PLUS float_term
+    (37) float_exp -> . float_exp MINUS float_term
+    (38) float_exp -> . float_term
+    (28) poly_term -> . poly_term TIMES poly_atom
+    (29) poly_term -> . poly_atom
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (39) float_term -> . frac_term TIMES float_atom
+    (40) float_term -> . frac_term DIVIDE float_atom
+    (41) float_term -> . float_term TIMES frac_atom
+    (42) float_term -> . float_term DIVIDE frac_atom
+    (43) float_term -> . float_term TIMES float_atom
+    (44) float_term -> . float_term DIVIDE float_atom
+    (45) float_term -> . float_atom
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    D               shift and go to state 6
+    I               shift and go to state 30
+    LPAREN          shift and go to state 3
+    COMPLEX         shift and go to state 26
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    INTFUN          shift and go to state 7
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    unary_function                 shift and go to state 28
+    vector_builder                 shift and go to state 20
+    poly_exp                       shift and go to state 40
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    poly_atom                      shift and go to state 43
+    int_function                   shift and go to state 16
+    poly_term                      shift and go to state 18
+    num                            shift and go to state 44
+    trig_function                  shift and go to state 33
+    float_atom                     shift and go to state 35
+    frac_exp                       shift and go to state 41
+    float_term                     shift and go to state 13
+    float_exp                      shift and go to state 45
+    vector                         shift and go to state 42
+    binary_function                shift and go to state 27
+    frac_term                      shift and go to state 17
+
+state 4
+
+    (10) interp_exp -> IP . point_list
+    (11) interp_exp -> IP . INT point_list
+    (66) point_list -> . point_list_builder RBRACK
+    (67) point_list_builder -> . point_list_builder COMMA LPAREN num COMMA num RPAREN
+    (68) point_list_builder -> . LBRACK LPAREN num COMMA num RPAREN
+
+    INT             shift and go to state 48
+    LBRACK          shift and go to state 46
+
+    point_list_builder             shift and go to state 49
+    point_list                     shift and go to state 47
+
+state 5
+
+    (72) num -> MINUS . INT
+    (73) num -> MINUS . FLOAT
+    (74) num -> MINUS . fraction_expr
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+
+    INT             shift and go to state 50
+    FLOAT           shift and go to state 52
+    FRAC            shift and go to state 8
+
+    fraction_expr                  shift and go to state 51
+
+state 6
+
+    (26) poly_exp -> D . poly_atom
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 53
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 55
+    fraction_expr                  shift and go to state 21
+    vector                         shift and go to state 42
+    poly_atom                      shift and go to state 54
+    vector_builder                 shift and go to state 20
+
+state 7
+
+    (53) int_function -> INTFUN . LPAREN INT COMMA INT RPAREN
+
+    LPAREN          shift and go to state 56
+
+
+state 8
+
+    (54) fraction_expr -> FRAC . LPAREN frac_exp COMMA frac_exp RPAREN
+
+    LPAREN          shift and go to state 57
+
+
+state 9
+
+    (19) frac_term -> frac_atom .
+
+    TIMES           reduce using rule 19 (frac_term -> frac_atom .)
+    DIVIDE          reduce using rule 19 (frac_term -> frac_atom .)
+    RPAREN          reduce using rule 19 (frac_term -> frac_atom .)
+    PLUS            reduce using rule 19 (frac_term -> frac_atom .)
+    MINUS           reduce using rule 19 (frac_term -> frac_atom .)
+    COMMA           reduce using rule 19 (frac_term -> frac_atom .)
+    $end            reduce using rule 19 (frac_term -> frac_atom .)
+
+
+state 10
+
+    (5) exp -> interp_exp .
+
+    $end            reduce using rule 5 (exp -> interp_exp .)
+    RPAREN          reduce using rule 5 (exp -> interp_exp .)
+    COMMA           reduce using rule 5 (exp -> interp_exp .)
+
+
+state 11
+
+    (30) poly_atom -> num . X INT
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+    (21) frac_atom -> num .
+
+    X               shift and go to state 59
+    EXP             shift and go to state 58
+    TIMES           reduce using rule 21 (frac_atom -> num .)
+    DIVIDE          reduce using rule 21 (frac_atom -> num .)
+    PLUS            reduce using rule 21 (frac_atom -> num .)
+    MINUS           reduce using rule 21 (frac_atom -> num .)
+    $end            reduce using rule 21 (frac_atom -> num .)
+    RPAREN          reduce using rule 21 (frac_atom -> num .)
+    COMMA           reduce using rule 21 (frac_atom -> num .)
+
+
+state 12
+
+    (2) exp -> float_exp .
+    (34) float_exp -> float_exp . PLUS frac_term
+    (35) float_exp -> float_exp . MINUS frac_term
+    (36) float_exp -> float_exp . PLUS float_term
+    (37) float_exp -> float_exp . MINUS float_term
+
+    $end            reduce using rule 2 (exp -> float_exp .)
+    RPAREN          reduce using rule 2 (exp -> float_exp .)
+    COMMA           reduce using rule 2 (exp -> float_exp .)
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 60
+
+
+state 13
+
+    (38) float_exp -> float_term .
+    (41) float_term -> float_term . TIMES frac_atom
+    (42) float_term -> float_term . DIVIDE frac_atom
+    (43) float_term -> float_term . TIMES float_atom
+    (44) float_term -> float_term . DIVIDE float_atom
+
+    PLUS            reduce using rule 38 (float_exp -> float_term .)
+    MINUS           reduce using rule 38 (float_exp -> float_term .)
+    $end            reduce using rule 38 (float_exp -> float_term .)
+    RPAREN          reduce using rule 38 (float_exp -> float_term .)
+    COMMA           reduce using rule 38 (float_exp -> float_term .)
+    TIMES           shift and go to state 63
+    DIVIDE          shift and go to state 62
+
+
+state 14
+
+    (62) vector_cross -> vector .
+    (78) num -> vector . vector
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    TIMES           reduce using rule 62 (vector_cross -> vector .)
+    PLUS            reduce using rule 62 (vector_cross -> vector .)
+    MINUS           reduce using rule 62 (vector_cross -> vector .)
+    RPAREN          reduce using rule 62 (vector_cross -> vector .)
+    COMMA           reduce using rule 62 (vector_cross -> vector .)
+    $end            reduce using rule 62 (vector_cross -> vector .)
+    LBRACK          shift and go to state 19
+
+    vector                         shift and go to state 64
+    vector_builder                 shift and go to state 20
+
+state 15
+
+    (12) lstsq_exp -> LS . point_list
+    (13) lstsq_exp -> LS . MINUS point_list
+    (66) point_list -> . point_list_builder RBRACK
+    (67) point_list_builder -> . point_list_builder COMMA LPAREN num COMMA num RPAREN
+    (68) point_list_builder -> . LBRACK LPAREN num COMMA num RPAREN
+
+    MINUS           shift and go to state 66
+    LBRACK          shift and go to state 46
+
+    point_list_builder             shift and go to state 49
+    point_list                     shift and go to state 65
+
+state 16
+
+    (20) frac_atom -> int_function .
+
+    TIMES           reduce using rule 20 (frac_atom -> int_function .)
+    DIVIDE          reduce using rule 20 (frac_atom -> int_function .)
+    PLUS            reduce using rule 20 (frac_atom -> int_function .)
+    MINUS           reduce using rule 20 (frac_atom -> int_function .)
+    $end            reduce using rule 20 (frac_atom -> int_function .)
+    RPAREN          reduce using rule 20 (frac_atom -> int_function .)
+    COMMA           reduce using rule 20 (frac_atom -> int_function .)
+
+
+state 17
+
+    (16) frac_exp -> frac_term .
+    (17) frac_term -> frac_term . TIMES frac_atom
+    (18) frac_term -> frac_term . DIVIDE frac_atom
+    (39) float_term -> frac_term . TIMES float_atom
+    (40) float_term -> frac_term . DIVIDE float_atom
+
+    PLUS            reduce using rule 16 (frac_exp -> frac_term .)
+    MINUS           reduce using rule 16 (frac_exp -> frac_term .)
+    $end            reduce using rule 16 (frac_exp -> frac_term .)
+    RPAREN          reduce using rule 16 (frac_exp -> frac_term .)
+    COMMA           reduce using rule 16 (frac_exp -> frac_term .)
+    TIMES           shift and go to state 68
+    DIVIDE          shift and go to state 67
+
+
+state 18
+
+    (25) poly_exp -> poly_term .
+    (28) poly_term -> poly_term . TIMES poly_atom
+
+    PLUS            reduce using rule 25 (poly_exp -> poly_term .)
+    MINUS           reduce using rule 25 (poly_exp -> poly_term .)
+    RPAREN          reduce using rule 25 (poly_exp -> poly_term .)
+    COMMA           reduce using rule 25 (poly_exp -> poly_term .)
+    $end            reduce using rule 25 (poly_exp -> poly_term .)
+    TIMES           shift and go to state 69
+
+
+state 19
+
+    (65) vector_builder -> LBRACK . num
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 70
+    vector                         shift and go to state 42
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+
+state 20
+
+    (63) vector -> vector_builder . RBRACK
+    (64) vector_builder -> vector_builder . COMMA num
+
+    RBRACK          shift and go to state 71
+    COMMA           shift and go to state 72
+
+
+state 21
+
+    (71) num -> fraction_expr .
+
+    X               reduce using rule 71 (num -> fraction_expr .)
+    EXP             reduce using rule 71 (num -> fraction_expr .)
+    COMMA           reduce using rule 71 (num -> fraction_expr .)
+    TIMES           reduce using rule 71 (num -> fraction_expr .)
+    DIVIDE          reduce using rule 71 (num -> fraction_expr .)
+    RPAREN          reduce using rule 71 (num -> fraction_expr .)
+    PLUS            reduce using rule 71 (num -> fraction_expr .)
+    MINUS           reduce using rule 71 (num -> fraction_expr .)
+    $end            reduce using rule 71 (num -> fraction_expr .)
+    RBRACK          reduce using rule 71 (num -> fraction_expr .)
+
+
+state 22
+
+    (1) exp -> frac_exp .
+    (14) frac_exp -> frac_exp . PLUS frac_term
+    (15) frac_exp -> frac_exp . MINUS frac_term
+    (32) float_exp -> frac_exp . PLUS float_term
+    (33) float_exp -> frac_exp . MINUS float_term
+
+    $end            reduce using rule 1 (exp -> frac_exp .)
+    RPAREN          reduce using rule 1 (exp -> frac_exp .)
+    COMMA           reduce using rule 1 (exp -> frac_exp .)
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+
+
+state 23
+
+    (69) num -> INT .
+    (75) num -> INT . EXL
+
+    X               reduce using rule 69 (num -> INT .)
+    EXP             reduce using rule 69 (num -> INT .)
+    COMMA           reduce using rule 69 (num -> INT .)
+    TIMES           reduce using rule 69 (num -> INT .)
+    DIVIDE          reduce using rule 69 (num -> INT .)
+    RPAREN          reduce using rule 69 (num -> INT .)
+    PLUS            reduce using rule 69 (num -> INT .)
+    MINUS           reduce using rule 69 (num -> INT .)
+    $end            reduce using rule 69 (num -> INT .)
+    RBRACK          reduce using rule 69 (num -> INT .)
+    EXL             shift and go to state 75
+
+
+state 24
+
+    (51) unary_function -> FUN . LPAREN exp RPAREN
+    (52) binary_function -> FUN . LPAREN exp COMMA exp RPAREN
+
+    LPAREN          shift and go to state 76
+
+
+state 25
+
+    (59) vector_exp -> vector_cross .
+    (60) vector_cross -> vector_cross . TIMES vector
+    (61) vector_cross -> vector_cross . TIMES num
+
+    PLUS            reduce using rule 59 (vector_exp -> vector_cross .)
+    MINUS           reduce using rule 59 (vector_exp -> vector_cross .)
+    $end            reduce using rule 59 (vector_exp -> vector_cross .)
+    RPAREN          reduce using rule 59 (vector_exp -> vector_cross .)
+    COMMA           reduce using rule 59 (vector_exp -> vector_cross .)
+    TIMES           shift and go to state 77
+
+
+state 26
+
+    (50) float_atom -> COMPLEX .
+
+    TIMES           reduce using rule 50 (float_atom -> COMPLEX .)
+    DIVIDE          reduce using rule 50 (float_atom -> COMPLEX .)
+    PLUS            reduce using rule 50 (float_atom -> COMPLEX .)
+    MINUS           reduce using rule 50 (float_atom -> COMPLEX .)
+    $end            reduce using rule 50 (float_atom -> COMPLEX .)
+    RPAREN          reduce using rule 50 (float_atom -> COMPLEX .)
+    COMMA           reduce using rule 50 (float_atom -> COMPLEX .)
+
+
+state 27
+
+    (47) float_atom -> binary_function .
+
+    TIMES           reduce using rule 47 (float_atom -> binary_function .)
+    DIVIDE          reduce using rule 47 (float_atom -> binary_function .)
+    PLUS            reduce using rule 47 (float_atom -> binary_function .)
+    MINUS           reduce using rule 47 (float_atom -> binary_function .)
+    $end            reduce using rule 47 (float_atom -> binary_function .)
+    RPAREN          reduce using rule 47 (float_atom -> binary_function .)
+    COMMA           reduce using rule 47 (float_atom -> binary_function .)
+
+
+state 28
+
+    (46) float_atom -> unary_function .
+
+    TIMES           reduce using rule 46 (float_atom -> unary_function .)
+    DIVIDE          reduce using rule 46 (float_atom -> unary_function .)
+    PLUS            reduce using rule 46 (float_atom -> unary_function .)
+    MINUS           reduce using rule 46 (float_atom -> unary_function .)
+    $end            reduce using rule 46 (float_atom -> unary_function .)
+    RPAREN          reduce using rule 46 (float_atom -> unary_function .)
+    COMMA           reduce using rule 46 (float_atom -> unary_function .)
+
+
+state 29
+
+    (4) exp -> vector_exp .
+    (57) vector_exp -> vector_exp . PLUS vector_cross
+    (58) vector_exp -> vector_exp . MINUS vector_cross
+
+    $end            reduce using rule 4 (exp -> vector_exp .)
+    RPAREN          reduce using rule 4 (exp -> vector_exp .)
+    COMMA           reduce using rule 4 (exp -> vector_exp .)
+    PLUS            shift and go to state 78
+    MINUS           shift and go to state 79
+
+
+state 30
+
+    (27) poly_exp -> I . poly_atom
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 53
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 55
+    fraction_expr                  shift and go to state 21
+    vector                         shift and go to state 42
+    poly_atom                      shift and go to state 80
+    vector_builder                 shift and go to state 20
+
+state 31
+
+    (6) exp -> lstsq_exp .
+
+    $end            reduce using rule 6 (exp -> lstsq_exp .)
+    RPAREN          reduce using rule 6 (exp -> lstsq_exp .)
+    COMMA           reduce using rule 6 (exp -> lstsq_exp .)
+
+
+state 32
+
+    (7) exp -> poly_atom . frac_atom
+    (8) exp -> poly_atom . S LPAREN INT COMMA INT RPAREN
+    (9) exp -> poly_atom . I LPAREN INT COMMA INT RPAREN
+    (29) poly_term -> poly_atom .
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+  ! shift/reduce conflict for MINUS resolved as shift
+    S               shift and go to state 81
+    I               shift and go to state 84
+    TIMES           reduce using rule 29 (poly_term -> poly_atom .)
+    PLUS            reduce using rule 29 (poly_term -> poly_atom .)
+    $end            reduce using rule 29 (poly_term -> poly_atom .)
+    RPAREN          reduce using rule 29 (poly_term -> poly_atom .)
+    COMMA           reduce using rule 29 (poly_term -> poly_atom .)
+    LPAREN          shift and go to state 82
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+  ! MINUS           [ reduce using rule 29 (poly_term -> poly_atom .) ]
+
+    num                            shift and go to state 85
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    int_function                   shift and go to state 16
+    frac_atom                      shift and go to state 83
+    vector                         shift and go to state 42
+
+state 33
+
+    (48) float_atom -> trig_function .
+
+    TIMES           reduce using rule 48 (float_atom -> trig_function .)
+    DIVIDE          reduce using rule 48 (float_atom -> trig_function .)
+    PLUS            reduce using rule 48 (float_atom -> trig_function .)
+    MINUS           reduce using rule 48 (float_atom -> trig_function .)
+    $end            reduce using rule 48 (float_atom -> trig_function .)
+    RPAREN          reduce using rule 48 (float_atom -> trig_function .)
+    COMMA           reduce using rule 48 (float_atom -> trig_function .)
+
+
+state 34
+
+    (0) S' -> exp .
+
+
+
+state 35
+
+    (45) float_term -> float_atom .
+
+    TIMES           reduce using rule 45 (float_term -> float_atom .)
+    DIVIDE          reduce using rule 45 (float_term -> float_atom .)
+    PLUS            reduce using rule 45 (float_term -> float_atom .)
+    MINUS           reduce using rule 45 (float_term -> float_atom .)
+    $end            reduce using rule 45 (float_term -> float_atom .)
+    RPAREN          reduce using rule 45 (float_term -> float_atom .)
+    COMMA           reduce using rule 45 (float_term -> float_atom .)
+
+
+state 36
+
+    (70) num -> FLOAT .
+
+    X               reduce using rule 70 (num -> FLOAT .)
+    EXP             reduce using rule 70 (num -> FLOAT .)
+    COMMA           reduce using rule 70 (num -> FLOAT .)
+    TIMES           reduce using rule 70 (num -> FLOAT .)
+    DIVIDE          reduce using rule 70 (num -> FLOAT .)
+    RPAREN          reduce using rule 70 (num -> FLOAT .)
+    PLUS            reduce using rule 70 (num -> FLOAT .)
+    MINUS           reduce using rule 70 (num -> FLOAT .)
+    $end            reduce using rule 70 (num -> FLOAT .)
+    RBRACK          reduce using rule 70 (num -> FLOAT .)
+
+
+state 37
+
+    (55) trig_function -> TRIGFUN LPAREN . exp RPAREN
+    (56) trig_function -> TRIGFUN LPAREN . deg RPAREN
+    (1) exp -> . frac_exp
+    (2) exp -> . float_exp
+    (3) exp -> . poly_exp
+    (4) exp -> . vector_exp
+    (5) exp -> . interp_exp
+    (6) exp -> . lstsq_exp
+    (7) exp -> . poly_atom frac_atom
+    (8) exp -> . poly_atom S LPAREN INT COMMA INT RPAREN
+    (9) exp -> . poly_atom I LPAREN INT COMMA INT RPAREN
+    (79) deg -> . INT DEGREE
+    (80) deg -> . FLOAT DEGREE
+    (14) frac_exp -> . frac_exp PLUS frac_term
+    (15) frac_exp -> . frac_exp MINUS frac_term
+    (16) frac_exp -> . frac_term
+    (32) float_exp -> . frac_exp PLUS float_term
+    (33) float_exp -> . frac_exp MINUS float_term
+    (34) float_exp -> . float_exp PLUS frac_term
+    (35) float_exp -> . float_exp MINUS frac_term
+    (36) float_exp -> . float_exp PLUS float_term
+    (37) float_exp -> . float_exp MINUS float_term
+    (38) float_exp -> . float_term
+    (23) poly_exp -> . poly_exp PLUS poly_term
+    (24) poly_exp -> . poly_exp MINUS poly_term
+    (25) poly_exp -> . poly_term
+    (26) poly_exp -> . D poly_atom
+    (27) poly_exp -> . I poly_atom
+    (57) vector_exp -> . vector_exp PLUS vector_cross
+    (58) vector_exp -> . vector_exp MINUS vector_cross
+    (59) vector_exp -> . vector_cross
+    (10) interp_exp -> . IP point_list
+    (11) interp_exp -> . IP INT point_list
+    (12) lstsq_exp -> . LS point_list
+    (13) lstsq_exp -> . LS MINUS point_list
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (39) float_term -> . frac_term TIMES float_atom
+    (40) float_term -> . frac_term DIVIDE float_atom
+    (41) float_term -> . float_term TIMES frac_atom
+    (42) float_term -> . float_term DIVIDE frac_atom
+    (43) float_term -> . float_term TIMES float_atom
+    (44) float_term -> . float_term DIVIDE float_atom
+    (45) float_term -> . float_atom
+    (28) poly_term -> . poly_term TIMES poly_atom
+    (29) poly_term -> . poly_atom
+    (60) vector_cross -> . vector_cross TIMES vector
+    (61) vector_cross -> . vector_cross TIMES num
+    (62) vector_cross -> . vector
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (63) vector -> . vector_builder RBRACK
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    INT             shift and go to state 86
+    FLOAT           shift and go to state 89
+    D               shift and go to state 6
+    I               shift and go to state 30
+    IP              shift and go to state 4
+    LS              shift and go to state 15
+    LPAREN          shift and go to state 3
+    MINUS           shift and go to state 5
+    COMPLEX         shift and go to state 26
+    FRAC            shift and go to state 8
+    INTFUN          shift and go to state 7
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    LBRACK          shift and go to state 19
+
+    poly_exp                       shift and go to state 2
+    fraction_expr                  shift and go to state 21
+    frac_exp                       shift and go to state 22
+    int_function                   shift and go to state 16
+    poly_term                      shift and go to state 18
+    trig_function                  shift and go to state 33
+    deg                            shift and go to state 87
+    binary_function                shift and go to state 27
+    vector_builder                 shift and go to state 20
+    unary_function                 shift and go to state 28
+    frac_atom                      shift and go to state 9
+    poly_atom                      shift and go to state 32
+    interp_exp                     shift and go to state 10
+    lstsq_exp                      shift and go to state 31
+    num                            shift and go to state 11
+    float_exp                      shift and go to state 12
+    vector_exp                     shift and go to state 29
+    float_term                     shift and go to state 13
+    vector                         shift and go to state 14
+    exp                            shift and go to state 88
+    float_atom                     shift and go to state 35
+    vector_cross                   shift and go to state 25
+    frac_term                      shift and go to state 17
+
+state 38
+
+    (24) poly_exp -> poly_exp MINUS . poly_term
+    (28) poly_term -> . poly_term TIMES poly_atom
+    (29) poly_term -> . poly_atom
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 53
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 55
+    fraction_expr                  shift and go to state 21
+    vector                         shift and go to state 42
+    poly_atom                      shift and go to state 43
+    poly_term                      shift and go to state 90
+    vector_builder                 shift and go to state 20
+
+state 39
+
+    (23) poly_exp -> poly_exp PLUS . poly_term
+    (28) poly_term -> . poly_term TIMES poly_atom
+    (29) poly_term -> . poly_atom
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 53
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 55
+    fraction_expr                  shift and go to state 21
+    vector                         shift and go to state 42
+    poly_atom                      shift and go to state 43
+    poly_term                      shift and go to state 91
+    vector_builder                 shift and go to state 20
+
+state 40
+
+    (31) poly_atom -> LPAREN poly_exp . RPAREN
+    (23) poly_exp -> poly_exp . PLUS poly_term
+    (24) poly_exp -> poly_exp . MINUS poly_term
+
+    RPAREN          shift and go to state 92
+    PLUS            shift and go to state 39
+    MINUS           shift and go to state 38
+
+
+state 41
+
+    (22) frac_atom -> LPAREN frac_exp . RPAREN
+    (14) frac_exp -> frac_exp . PLUS frac_term
+    (15) frac_exp -> frac_exp . MINUS frac_term
+    (32) float_exp -> frac_exp . PLUS float_term
+    (33) float_exp -> frac_exp . MINUS float_term
+
+    RPAREN          shift and go to state 93
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+
+
+state 42
+
+    (78) num -> vector . vector
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LBRACK          shift and go to state 19
+
+    vector                         shift and go to state 64
+    vector_builder                 shift and go to state 20
+
+state 43
+
+    (29) poly_term -> poly_atom .
+
+    TIMES           reduce using rule 29 (poly_term -> poly_atom .)
+    RPAREN          reduce using rule 29 (poly_term -> poly_atom .)
+    PLUS            reduce using rule 29 (poly_term -> poly_atom .)
+    MINUS           reduce using rule 29 (poly_term -> poly_atom .)
+    $end            reduce using rule 29 (poly_term -> poly_atom .)
+    COMMA           reduce using rule 29 (poly_term -> poly_atom .)
+
+
+state 44
+
+    (30) poly_atom -> num . X INT
+    (21) frac_atom -> num .
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+
+    X               shift and go to state 59
+    TIMES           reduce using rule 21 (frac_atom -> num .)
+    DIVIDE          reduce using rule 21 (frac_atom -> num .)
+    RPAREN          reduce using rule 21 (frac_atom -> num .)
+    PLUS            reduce using rule 21 (frac_atom -> num .)
+    MINUS           reduce using rule 21 (frac_atom -> num .)
+    EXP             shift and go to state 58
+
+
+state 45
+
+    (49) float_atom -> LPAREN float_exp . RPAREN
+    (34) float_exp -> float_exp . PLUS frac_term
+    (35) float_exp -> float_exp . MINUS frac_term
+    (36) float_exp -> float_exp . PLUS float_term
+    (37) float_exp -> float_exp . MINUS float_term
+
+    RPAREN          shift and go to state 94
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 60
+
+
+state 46
+
+    (68) point_list_builder -> LBRACK . LPAREN num COMMA num RPAREN
+
+    LPAREN          shift and go to state 95
+
+
+state 47
+
+    (10) interp_exp -> IP point_list .
+
+    $end            reduce using rule 10 (interp_exp -> IP point_list .)
+    RPAREN          reduce using rule 10 (interp_exp -> IP point_list .)
+    COMMA           reduce using rule 10 (interp_exp -> IP point_list .)
+
+
+state 48
+
+    (11) interp_exp -> IP INT . point_list
+    (66) point_list -> . point_list_builder RBRACK
+    (67) point_list_builder -> . point_list_builder COMMA LPAREN num COMMA num RPAREN
+    (68) point_list_builder -> . LBRACK LPAREN num COMMA num RPAREN
+
+    LBRACK          shift and go to state 46
+
+    point_list_builder             shift and go to state 49
+    point_list                     shift and go to state 96
+
+state 49
+
+    (66) point_list -> point_list_builder . RBRACK
+    (67) point_list_builder -> point_list_builder . COMMA LPAREN num COMMA num RPAREN
+
+    RBRACK          shift and go to state 97
+    COMMA           shift and go to state 98
+
+
+state 50
+
+    (72) num -> MINUS INT .
+
+    X               reduce using rule 72 (num -> MINUS INT .)
+    EXP             reduce using rule 72 (num -> MINUS INT .)
+    COMMA           reduce using rule 72 (num -> MINUS INT .)
+    TIMES           reduce using rule 72 (num -> MINUS INT .)
+    DIVIDE          reduce using rule 72 (num -> MINUS INT .)
+    RPAREN          reduce using rule 72 (num -> MINUS INT .)
+    PLUS            reduce using rule 72 (num -> MINUS INT .)
+    MINUS           reduce using rule 72 (num -> MINUS INT .)
+    $end            reduce using rule 72 (num -> MINUS INT .)
+    RBRACK          reduce using rule 72 (num -> MINUS INT .)
+
+
+state 51
+
+    (74) num -> MINUS fraction_expr .
+
+    X               reduce using rule 74 (num -> MINUS fraction_expr .)
+    EXP             reduce using rule 74 (num -> MINUS fraction_expr .)
+    COMMA           reduce using rule 74 (num -> MINUS fraction_expr .)
+    TIMES           reduce using rule 74 (num -> MINUS fraction_expr .)
+    DIVIDE          reduce using rule 74 (num -> MINUS fraction_expr .)
+    RPAREN          reduce using rule 74 (num -> MINUS fraction_expr .)
+    PLUS            reduce using rule 74 (num -> MINUS fraction_expr .)
+    MINUS           reduce using rule 74 (num -> MINUS fraction_expr .)
+    $end            reduce using rule 74 (num -> MINUS fraction_expr .)
+    RBRACK          reduce using rule 74 (num -> MINUS fraction_expr .)
+
+
+state 52
+
+    (73) num -> MINUS FLOAT .
+
+    X               reduce using rule 73 (num -> MINUS FLOAT .)
+    EXP             reduce using rule 73 (num -> MINUS FLOAT .)
+    COMMA           reduce using rule 73 (num -> MINUS FLOAT .)
+    TIMES           reduce using rule 73 (num -> MINUS FLOAT .)
+    DIVIDE          reduce using rule 73 (num -> MINUS FLOAT .)
+    RPAREN          reduce using rule 73 (num -> MINUS FLOAT .)
+    PLUS            reduce using rule 73 (num -> MINUS FLOAT .)
+    MINUS           reduce using rule 73 (num -> MINUS FLOAT .)
+    $end            reduce using rule 73 (num -> MINUS FLOAT .)
+    RBRACK          reduce using rule 73 (num -> MINUS FLOAT .)
+
+
+state 53
+
+    (31) poly_atom -> LPAREN . poly_exp RPAREN
+    (23) poly_exp -> . poly_exp PLUS poly_term
+    (24) poly_exp -> . poly_exp MINUS poly_term
+    (25) poly_exp -> . poly_term
+    (26) poly_exp -> . D poly_atom
+    (27) poly_exp -> . I poly_atom
+    (28) poly_term -> . poly_term TIMES poly_atom
+    (29) poly_term -> . poly_atom
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    D               shift and go to state 6
+    I               shift and go to state 30
+    LPAREN          shift and go to state 53
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 55
+    poly_exp                       shift and go to state 40
+    fraction_expr                  shift and go to state 21
+    vector                         shift and go to state 42
+    poly_atom                      shift and go to state 43
+    poly_term                      shift and go to state 18
+    vector_builder                 shift and go to state 20
+
+state 54
+
+    (26) poly_exp -> D poly_atom .
+
+    PLUS            reduce using rule 26 (poly_exp -> D poly_atom .)
+    MINUS           reduce using rule 26 (poly_exp -> D poly_atom .)
+    RPAREN          reduce using rule 26 (poly_exp -> D poly_atom .)
+    COMMA           reduce using rule 26 (poly_exp -> D poly_atom .)
+    $end            reduce using rule 26 (poly_exp -> D poly_atom .)
+
+
+state 55
+
+    (30) poly_atom -> num . X INT
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+
+    X               shift and go to state 59
+    EXP             shift and go to state 58
+
+
+state 56
+
+    (53) int_function -> INTFUN LPAREN . INT COMMA INT RPAREN
+
+    INT             shift and go to state 99
+
+
+state 57
+
+    (54) fraction_expr -> FRAC LPAREN . frac_exp COMMA frac_exp RPAREN
+    (14) frac_exp -> . frac_exp PLUS frac_term
+    (15) frac_exp -> . frac_exp MINUS frac_term
+    (16) frac_exp -> . frac_term
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 82
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 85
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    frac_exp                       shift and go to state 100
+    int_function                   shift and go to state 16
+    vector                         shift and go to state 42
+    frac_term                      shift and go to state 101
+
+state 58
+
+    (76) num -> num EXP . INT
+    (77) num -> num EXP . MINUS INT
+
+    INT             shift and go to state 102
+    MINUS           shift and go to state 103
+
+
+state 59
+
+    (30) poly_atom -> num X . INT
+
+    INT             shift and go to state 104
+
+
+state 60
+
+    (35) float_exp -> float_exp MINUS . frac_term
+    (37) float_exp -> float_exp MINUS . float_term
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (39) float_term -> . frac_term TIMES float_atom
+    (40) float_term -> . frac_term DIVIDE float_atom
+    (41) float_term -> . float_term TIMES frac_atom
+    (42) float_term -> . float_term DIVIDE frac_atom
+    (43) float_term -> . float_term TIMES float_atom
+    (44) float_term -> . float_term DIVIDE float_atom
+    (45) float_term -> . float_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 105
+    COMPLEX         shift and go to state 26
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    unary_function                 shift and go to state 28
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    int_function                   shift and go to state 16
+    num                            shift and go to state 85
+    float_term                     shift and go to state 106
+    float_atom                     shift and go to state 35
+    vector                         shift and go to state 42
+    trig_function                  shift and go to state 33
+    binary_function                shift and go to state 27
+    frac_term                      shift and go to state 107
+
+state 61
+
+    (34) float_exp -> float_exp PLUS . frac_term
+    (36) float_exp -> float_exp PLUS . float_term
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (39) float_term -> . frac_term TIMES float_atom
+    (40) float_term -> . frac_term DIVIDE float_atom
+    (41) float_term -> . float_term TIMES frac_atom
+    (42) float_term -> . float_term DIVIDE frac_atom
+    (43) float_term -> . float_term TIMES float_atom
+    (44) float_term -> . float_term DIVIDE float_atom
+    (45) float_term -> . float_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 105
+    COMPLEX         shift and go to state 26
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    unary_function                 shift and go to state 28
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    int_function                   shift and go to state 16
+    num                            shift and go to state 85
+    float_term                     shift and go to state 108
+    float_atom                     shift and go to state 35
+    vector                         shift and go to state 42
+    trig_function                  shift and go to state 33
+    binary_function                shift and go to state 27
+    frac_term                      shift and go to state 109
+
+state 62
+
+    (42) float_term -> float_term DIVIDE . frac_atom
+    (44) float_term -> float_term DIVIDE . float_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 105
+    COMPLEX         shift and go to state 26
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    unary_function                 shift and go to state 28
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 110
+    int_function                   shift and go to state 16
+    num                            shift and go to state 85
+    float_atom                     shift and go to state 111
+    vector                         shift and go to state 42
+    trig_function                  shift and go to state 33
+    binary_function                shift and go to state 27
+
+state 63
+
+    (41) float_term -> float_term TIMES . frac_atom
+    (43) float_term -> float_term TIMES . float_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 105
+    COMPLEX         shift and go to state 26
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    unary_function                 shift and go to state 28
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 112
+    int_function                   shift and go to state 16
+    num                            shift and go to state 85
+    float_atom                     shift and go to state 113
+    vector                         shift and go to state 42
+    trig_function                  shift and go to state 33
+    binary_function                shift and go to state 27
+
+state 64
+
+    (78) num -> vector vector .
+
+    X               reduce using rule 78 (num -> vector vector .)
+    EXP             reduce using rule 78 (num -> vector vector .)
+    COMMA           reduce using rule 78 (num -> vector vector .)
+    TIMES           reduce using rule 78 (num -> vector vector .)
+    DIVIDE          reduce using rule 78 (num -> vector vector .)
+    RPAREN          reduce using rule 78 (num -> vector vector .)
+    PLUS            reduce using rule 78 (num -> vector vector .)
+    MINUS           reduce using rule 78 (num -> vector vector .)
+    $end            reduce using rule 78 (num -> vector vector .)
+    RBRACK          reduce using rule 78 (num -> vector vector .)
+
+
+state 65
+
+    (12) lstsq_exp -> LS point_list .
+
+    $end            reduce using rule 12 (lstsq_exp -> LS point_list .)
+    RPAREN          reduce using rule 12 (lstsq_exp -> LS point_list .)
+    COMMA           reduce using rule 12 (lstsq_exp -> LS point_list .)
+
+
+state 66
+
+    (13) lstsq_exp -> LS MINUS . point_list
+    (66) point_list -> . point_list_builder RBRACK
+    (67) point_list_builder -> . point_list_builder COMMA LPAREN num COMMA num RPAREN
+    (68) point_list_builder -> . LBRACK LPAREN num COMMA num RPAREN
+
+    LBRACK          shift and go to state 46
+
+    point_list_builder             shift and go to state 49
+    point_list                     shift and go to state 114
+
+state 67
+
+    (18) frac_term -> frac_term DIVIDE . frac_atom
+    (40) float_term -> frac_term DIVIDE . float_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 105
+    COMPLEX         shift and go to state 26
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    unary_function                 shift and go to state 28
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 115
+    int_function                   shift and go to state 16
+    num                            shift and go to state 85
+    float_atom                     shift and go to state 116
+    vector                         shift and go to state 42
+    trig_function                  shift and go to state 33
+    binary_function                shift and go to state 27
+
+state 68
+
+    (17) frac_term -> frac_term TIMES . frac_atom
+    (39) float_term -> frac_term TIMES . float_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 105
+    COMPLEX         shift and go to state 26
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    unary_function                 shift and go to state 28
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 117
+    int_function                   shift and go to state 16
+    num                            shift and go to state 85
+    float_atom                     shift and go to state 118
+    vector                         shift and go to state 42
+    trig_function                  shift and go to state 33
+    binary_function                shift and go to state 27
+
+state 69
+
+    (28) poly_term -> poly_term TIMES . poly_atom
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 53
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 55
+    fraction_expr                  shift and go to state 21
+    vector                         shift and go to state 42
+    poly_atom                      shift and go to state 119
+    vector_builder                 shift and go to state 20
+
+state 70
+
+    (65) vector_builder -> LBRACK num .
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+
+    RBRACK          reduce using rule 65 (vector_builder -> LBRACK num .)
+    COMMA           reduce using rule 65 (vector_builder -> LBRACK num .)
+    EXP             shift and go to state 58
+
+
+state 71
+
+    (63) vector -> vector_builder RBRACK .
+
+    LBRACK          reduce using rule 63 (vector -> vector_builder RBRACK .)
+    TIMES           reduce using rule 63 (vector -> vector_builder RBRACK .)
+    PLUS            reduce using rule 63 (vector -> vector_builder RBRACK .)
+    MINUS           reduce using rule 63 (vector -> vector_builder RBRACK .)
+    $end            reduce using rule 63 (vector -> vector_builder RBRACK .)
+    RPAREN          reduce using rule 63 (vector -> vector_builder RBRACK .)
+    COMMA           reduce using rule 63 (vector -> vector_builder RBRACK .)
+    X               reduce using rule 63 (vector -> vector_builder RBRACK .)
+    EXP             reduce using rule 63 (vector -> vector_builder RBRACK .)
+    DIVIDE          reduce using rule 63 (vector -> vector_builder RBRACK .)
+    RBRACK          reduce using rule 63 (vector -> vector_builder RBRACK .)
+
+
+state 72
+
+    (64) vector_builder -> vector_builder COMMA . num
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 120
+    vector                         shift and go to state 42
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+
+state 73
+
+    (14) frac_exp -> frac_exp PLUS . frac_term
+    (32) float_exp -> frac_exp PLUS . float_term
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (39) float_term -> . frac_term TIMES float_atom
+    (40) float_term -> . frac_term DIVIDE float_atom
+    (41) float_term -> . float_term TIMES frac_atom
+    (42) float_term -> . float_term DIVIDE frac_atom
+    (43) float_term -> . float_term TIMES float_atom
+    (44) float_term -> . float_term DIVIDE float_atom
+    (45) float_term -> . float_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 105
+    COMPLEX         shift and go to state 26
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    unary_function                 shift and go to state 28
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    int_function                   shift and go to state 16
+    num                            shift and go to state 85
+    float_term                     shift and go to state 121
+    float_atom                     shift and go to state 35
+    vector                         shift and go to state 42
+    trig_function                  shift and go to state 33
+    binary_function                shift and go to state 27
+    frac_term                      shift and go to state 122
+
+state 74
+
+    (15) frac_exp -> frac_exp MINUS . frac_term
+    (33) float_exp -> frac_exp MINUS . float_term
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (39) float_term -> . frac_term TIMES float_atom
+    (40) float_term -> . frac_term DIVIDE float_atom
+    (41) float_term -> . float_term TIMES frac_atom
+    (42) float_term -> . float_term DIVIDE frac_atom
+    (43) float_term -> . float_term TIMES float_atom
+    (44) float_term -> . float_term DIVIDE float_atom
+    (45) float_term -> . float_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 105
+    COMPLEX         shift and go to state 26
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    unary_function                 shift and go to state 28
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    int_function                   shift and go to state 16
+    num                            shift and go to state 85
+    float_term                     shift and go to state 123
+    float_atom                     shift and go to state 35
+    vector                         shift and go to state 42
+    trig_function                  shift and go to state 33
+    binary_function                shift and go to state 27
+    frac_term                      shift and go to state 124
+
+state 75
+
+    (75) num -> INT EXL .
+
+    X               reduce using rule 75 (num -> INT EXL .)
+    EXP             reduce using rule 75 (num -> INT EXL .)
+    COMMA           reduce using rule 75 (num -> INT EXL .)
+    TIMES           reduce using rule 75 (num -> INT EXL .)
+    DIVIDE          reduce using rule 75 (num -> INT EXL .)
+    RPAREN          reduce using rule 75 (num -> INT EXL .)
+    PLUS            reduce using rule 75 (num -> INT EXL .)
+    MINUS           reduce using rule 75 (num -> INT EXL .)
+    $end            reduce using rule 75 (num -> INT EXL .)
+    RBRACK          reduce using rule 75 (num -> INT EXL .)
+
+
+state 76
+
+    (51) unary_function -> FUN LPAREN . exp RPAREN
+    (52) binary_function -> FUN LPAREN . exp COMMA exp RPAREN
+    (1) exp -> . frac_exp
+    (2) exp -> . float_exp
+    (3) exp -> . poly_exp
+    (4) exp -> . vector_exp
+    (5) exp -> . interp_exp
+    (6) exp -> . lstsq_exp
+    (7) exp -> . poly_atom frac_atom
+    (8) exp -> . poly_atom S LPAREN INT COMMA INT RPAREN
+    (9) exp -> . poly_atom I LPAREN INT COMMA INT RPAREN
+    (14) frac_exp -> . frac_exp PLUS frac_term
+    (15) frac_exp -> . frac_exp MINUS frac_term
+    (16) frac_exp -> . frac_term
+    (32) float_exp -> . frac_exp PLUS float_term
+    (33) float_exp -> . frac_exp MINUS float_term
+    (34) float_exp -> . float_exp PLUS frac_term
+    (35) float_exp -> . float_exp MINUS frac_term
+    (36) float_exp -> . float_exp PLUS float_term
+    (37) float_exp -> . float_exp MINUS float_term
+    (38) float_exp -> . float_term
+    (23) poly_exp -> . poly_exp PLUS poly_term
+    (24) poly_exp -> . poly_exp MINUS poly_term
+    (25) poly_exp -> . poly_term
+    (26) poly_exp -> . D poly_atom
+    (27) poly_exp -> . I poly_atom
+    (57) vector_exp -> . vector_exp PLUS vector_cross
+    (58) vector_exp -> . vector_exp MINUS vector_cross
+    (59) vector_exp -> . vector_cross
+    (10) interp_exp -> . IP point_list
+    (11) interp_exp -> . IP INT point_list
+    (12) lstsq_exp -> . LS point_list
+    (13) lstsq_exp -> . LS MINUS point_list
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (39) float_term -> . frac_term TIMES float_atom
+    (40) float_term -> . frac_term DIVIDE float_atom
+    (41) float_term -> . float_term TIMES frac_atom
+    (42) float_term -> . float_term DIVIDE frac_atom
+    (43) float_term -> . float_term TIMES float_atom
+    (44) float_term -> . float_term DIVIDE float_atom
+    (45) float_term -> . float_atom
+    (28) poly_term -> . poly_term TIMES poly_atom
+    (29) poly_term -> . poly_atom
+    (60) vector_cross -> . vector_cross TIMES vector
+    (61) vector_cross -> . vector_cross TIMES num
+    (62) vector_cross -> . vector
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (63) vector -> . vector_builder RBRACK
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    D               shift and go to state 6
+    I               shift and go to state 30
+    IP              shift and go to state 4
+    LS              shift and go to state 15
+    LPAREN          shift and go to state 3
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    COMPLEX         shift and go to state 26
+    FRAC            shift and go to state 8
+    INTFUN          shift and go to state 7
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    LBRACK          shift and go to state 19
+
+    poly_exp                       shift and go to state 2
+    fraction_expr                  shift and go to state 21
+    frac_exp                       shift and go to state 22
+    int_function                   shift and go to state 16
+    poly_term                      shift and go to state 18
+    trig_function                  shift and go to state 33
+    vector                         shift and go to state 14
+    binary_function                shift and go to state 27
+    vector_builder                 shift and go to state 20
+    unary_function                 shift and go to state 28
+    frac_atom                      shift and go to state 9
+    vector_exp                     shift and go to state 29
+    interp_exp                     shift and go to state 10
+    lstsq_exp                      shift and go to state 31
+    num                            shift and go to state 11
+    float_exp                      shift and go to state 12
+    poly_atom                      shift and go to state 32
+    float_term                     shift and go to state 13
+    float_atom                     shift and go to state 35
+    exp                            shift and go to state 125
+    vector_cross                   shift and go to state 25
+    frac_term                      shift and go to state 17
+
+state 77
+
+    (60) vector_cross -> vector_cross TIMES . vector
+    (61) vector_cross -> vector_cross TIMES . num
+    (63) vector -> . vector_builder RBRACK
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    LBRACK          shift and go to state 19
+    FRAC            shift and go to state 8
+
+    num                            shift and go to state 126
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    vector                         shift and go to state 127
+
+state 78
+
+    (57) vector_exp -> vector_exp PLUS . vector_cross
+    (60) vector_cross -> . vector_cross TIMES vector
+    (61) vector_cross -> . vector_cross TIMES num
+    (62) vector_cross -> . vector
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LBRACK          shift and go to state 19
+
+    vector                         shift and go to state 128
+    vector_builder                 shift and go to state 20
+    vector_cross                   shift and go to state 129
+
+state 79
+
+    (58) vector_exp -> vector_exp MINUS . vector_cross
+    (60) vector_cross -> . vector_cross TIMES vector
+    (61) vector_cross -> . vector_cross TIMES num
+    (62) vector_cross -> . vector
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LBRACK          shift and go to state 19
+
+    vector                         shift and go to state 128
+    vector_builder                 shift and go to state 20
+    vector_cross                   shift and go to state 130
+
+state 80
+
+    (27) poly_exp -> I poly_atom .
+
+    PLUS            reduce using rule 27 (poly_exp -> I poly_atom .)
+    MINUS           reduce using rule 27 (poly_exp -> I poly_atom .)
+    RPAREN          reduce using rule 27 (poly_exp -> I poly_atom .)
+    COMMA           reduce using rule 27 (poly_exp -> I poly_atom .)
+    $end            reduce using rule 27 (poly_exp -> I poly_atom .)
+
+
+state 81
+
+    (8) exp -> poly_atom S . LPAREN INT COMMA INT RPAREN
+
+    LPAREN          shift and go to state 131
+
+
+state 82
+
+    (22) frac_atom -> LPAREN . frac_exp RPAREN
+    (14) frac_exp -> . frac_exp PLUS frac_term
+    (15) frac_exp -> . frac_exp MINUS frac_term
+    (16) frac_exp -> . frac_term
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 82
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 85
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    frac_exp                       shift and go to state 132
+    int_function                   shift and go to state 16
+    vector                         shift and go to state 42
+    frac_term                      shift and go to state 101
+
+state 83
+
+    (7) exp -> poly_atom frac_atom .
+
+    $end            reduce using rule 7 (exp -> poly_atom frac_atom .)
+    RPAREN          reduce using rule 7 (exp -> poly_atom frac_atom .)
+    COMMA           reduce using rule 7 (exp -> poly_atom frac_atom .)
+
+
+state 84
+
+    (9) exp -> poly_atom I . LPAREN INT COMMA INT RPAREN
+
+    LPAREN          shift and go to state 133
+
+
+state 85
+
+    (21) frac_atom -> num .
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+
+    TIMES           reduce using rule 21 (frac_atom -> num .)
+    DIVIDE          reduce using rule 21 (frac_atom -> num .)
+    PLUS            reduce using rule 21 (frac_atom -> num .)
+    MINUS           reduce using rule 21 (frac_atom -> num .)
+    $end            reduce using rule 21 (frac_atom -> num .)
+    RPAREN          reduce using rule 21 (frac_atom -> num .)
+    COMMA           reduce using rule 21 (frac_atom -> num .)
+    EXP             shift and go to state 58
+
+
+state 86
+
+    (79) deg -> INT . DEGREE
+    (69) num -> INT .
+    (75) num -> INT . EXL
+
+    DEGREE          shift and go to state 134
+    X               reduce using rule 69 (num -> INT .)
+    EXP             reduce using rule 69 (num -> INT .)
+    TIMES           reduce using rule 69 (num -> INT .)
+    DIVIDE          reduce using rule 69 (num -> INT .)
+    PLUS            reduce using rule 69 (num -> INT .)
+    MINUS           reduce using rule 69 (num -> INT .)
+    RPAREN          reduce using rule 69 (num -> INT .)
+    EXL             shift and go to state 75
+
+
+state 87
+
+    (56) trig_function -> TRIGFUN LPAREN deg . RPAREN
+
+    RPAREN          shift and go to state 135
+
+
+state 88
+
+    (55) trig_function -> TRIGFUN LPAREN exp . RPAREN
+
+    RPAREN          shift and go to state 136
+
+
+state 89
+
+    (80) deg -> FLOAT . DEGREE
+    (70) num -> FLOAT .
+
+    DEGREE          shift and go to state 137
+    X               reduce using rule 70 (num -> FLOAT .)
+    EXP             reduce using rule 70 (num -> FLOAT .)
+    TIMES           reduce using rule 70 (num -> FLOAT .)
+    DIVIDE          reduce using rule 70 (num -> FLOAT .)
+    PLUS            reduce using rule 70 (num -> FLOAT .)
+    MINUS           reduce using rule 70 (num -> FLOAT .)
+    RPAREN          reduce using rule 70 (num -> FLOAT .)
+
+
+state 90
+
+    (24) poly_exp -> poly_exp MINUS poly_term .
+    (28) poly_term -> poly_term . TIMES poly_atom
+
+    PLUS            reduce using rule 24 (poly_exp -> poly_exp MINUS poly_term .)
+    MINUS           reduce using rule 24 (poly_exp -> poly_exp MINUS poly_term .)
+    RPAREN          reduce using rule 24 (poly_exp -> poly_exp MINUS poly_term .)
+    COMMA           reduce using rule 24 (poly_exp -> poly_exp MINUS poly_term .)
+    $end            reduce using rule 24 (poly_exp -> poly_exp MINUS poly_term .)
+    TIMES           shift and go to state 69
+
+
+state 91
+
+    (23) poly_exp -> poly_exp PLUS poly_term .
+    (28) poly_term -> poly_term . TIMES poly_atom
+
+    PLUS            reduce using rule 23 (poly_exp -> poly_exp PLUS poly_term .)
+    MINUS           reduce using rule 23 (poly_exp -> poly_exp PLUS poly_term .)
+    RPAREN          reduce using rule 23 (poly_exp -> poly_exp PLUS poly_term .)
+    COMMA           reduce using rule 23 (poly_exp -> poly_exp PLUS poly_term .)
+    $end            reduce using rule 23 (poly_exp -> poly_exp PLUS poly_term .)
+    TIMES           shift and go to state 69
+
+
+state 92
+
+    (31) poly_atom -> LPAREN poly_exp RPAREN .
+
+    TIMES           reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    PLUS            reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    MINUS           reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    $end            reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    RPAREN          reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    COMMA           reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    S               reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    I               reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    LPAREN          reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    INTFUN          reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    INT             reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    FLOAT           reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    FRAC            reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+    LBRACK          reduce using rule 31 (poly_atom -> LPAREN poly_exp RPAREN .)
+
+
+state 93
+
+    (22) frac_atom -> LPAREN frac_exp RPAREN .
+
+    TIMES           reduce using rule 22 (frac_atom -> LPAREN frac_exp RPAREN .)
+    DIVIDE          reduce using rule 22 (frac_atom -> LPAREN frac_exp RPAREN .)
+    PLUS            reduce using rule 22 (frac_atom -> LPAREN frac_exp RPAREN .)
+    MINUS           reduce using rule 22 (frac_atom -> LPAREN frac_exp RPAREN .)
+    $end            reduce using rule 22 (frac_atom -> LPAREN frac_exp RPAREN .)
+    RPAREN          reduce using rule 22 (frac_atom -> LPAREN frac_exp RPAREN .)
+    COMMA           reduce using rule 22 (frac_atom -> LPAREN frac_exp RPAREN .)
+
+
+state 94
+
+    (49) float_atom -> LPAREN float_exp RPAREN .
+
+    TIMES           reduce using rule 49 (float_atom -> LPAREN float_exp RPAREN .)
+    DIVIDE          reduce using rule 49 (float_atom -> LPAREN float_exp RPAREN .)
+    PLUS            reduce using rule 49 (float_atom -> LPAREN float_exp RPAREN .)
+    MINUS           reduce using rule 49 (float_atom -> LPAREN float_exp RPAREN .)
+    $end            reduce using rule 49 (float_atom -> LPAREN float_exp RPAREN .)
+    RPAREN          reduce using rule 49 (float_atom -> LPAREN float_exp RPAREN .)
+    COMMA           reduce using rule 49 (float_atom -> LPAREN float_exp RPAREN .)
+
+
+state 95
+
+    (68) point_list_builder -> LBRACK LPAREN . num COMMA num RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 138
+    vector                         shift and go to state 42
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+
+state 96
+
+    (11) interp_exp -> IP INT point_list .
+
+    $end            reduce using rule 11 (interp_exp -> IP INT point_list .)
+    RPAREN          reduce using rule 11 (interp_exp -> IP INT point_list .)
+    COMMA           reduce using rule 11 (interp_exp -> IP INT point_list .)
+
+
+state 97
+
+    (66) point_list -> point_list_builder RBRACK .
+
+    $end            reduce using rule 66 (point_list -> point_list_builder RBRACK .)
+    RPAREN          reduce using rule 66 (point_list -> point_list_builder RBRACK .)
+    COMMA           reduce using rule 66 (point_list -> point_list_builder RBRACK .)
+
+
+state 98
+
+    (67) point_list_builder -> point_list_builder COMMA . LPAREN num COMMA num RPAREN
+
+    LPAREN          shift and go to state 139
+
+
+state 99
+
+    (53) int_function -> INTFUN LPAREN INT . COMMA INT RPAREN
+
+    COMMA           shift and go to state 140
+
+
+state 100
+
+    (54) fraction_expr -> FRAC LPAREN frac_exp . COMMA frac_exp RPAREN
+    (14) frac_exp -> frac_exp . PLUS frac_term
+    (15) frac_exp -> frac_exp . MINUS frac_term
+
+    COMMA           shift and go to state 143
+    PLUS            shift and go to state 142
+    MINUS           shift and go to state 141
+
+
+state 101
+
+    (16) frac_exp -> frac_term .
+    (17) frac_term -> frac_term . TIMES frac_atom
+    (18) frac_term -> frac_term . DIVIDE frac_atom
+
+    COMMA           reduce using rule 16 (frac_exp -> frac_term .)
+    PLUS            reduce using rule 16 (frac_exp -> frac_term .)
+    MINUS           reduce using rule 16 (frac_exp -> frac_term .)
+    RPAREN          reduce using rule 16 (frac_exp -> frac_term .)
+    TIMES           shift and go to state 145
+    DIVIDE          shift and go to state 144
+
+
+state 102
+
+    (76) num -> num EXP INT .
+
+    X               reduce using rule 76 (num -> num EXP INT .)
+    EXP             reduce using rule 76 (num -> num EXP INT .)
+    COMMA           reduce using rule 76 (num -> num EXP INT .)
+    TIMES           reduce using rule 76 (num -> num EXP INT .)
+    DIVIDE          reduce using rule 76 (num -> num EXP INT .)
+    RPAREN          reduce using rule 76 (num -> num EXP INT .)
+    PLUS            reduce using rule 76 (num -> num EXP INT .)
+    MINUS           reduce using rule 76 (num -> num EXP INT .)
+    $end            reduce using rule 76 (num -> num EXP INT .)
+    RBRACK          reduce using rule 76 (num -> num EXP INT .)
+
+
+state 103
+
+    (77) num -> num EXP MINUS . INT
+
+    INT             shift and go to state 146
+
+
+state 104
+
+    (30) poly_atom -> num X INT .
+
+    TIMES           reduce using rule 30 (poly_atom -> num X INT .)
+    PLUS            reduce using rule 30 (poly_atom -> num X INT .)
+    MINUS           reduce using rule 30 (poly_atom -> num X INT .)
+    $end            reduce using rule 30 (poly_atom -> num X INT .)
+    RPAREN          reduce using rule 30 (poly_atom -> num X INT .)
+    COMMA           reduce using rule 30 (poly_atom -> num X INT .)
+    S               reduce using rule 30 (poly_atom -> num X INT .)
+    I               reduce using rule 30 (poly_atom -> num X INT .)
+    LPAREN          reduce using rule 30 (poly_atom -> num X INT .)
+    INTFUN          reduce using rule 30 (poly_atom -> num X INT .)
+    INT             reduce using rule 30 (poly_atom -> num X INT .)
+    FLOAT           reduce using rule 30 (poly_atom -> num X INT .)
+    FRAC            reduce using rule 30 (poly_atom -> num X INT .)
+    LBRACK          reduce using rule 30 (poly_atom -> num X INT .)
+
+
+state 105
+
+    (22) frac_atom -> LPAREN . frac_exp RPAREN
+    (49) float_atom -> LPAREN . float_exp RPAREN
+    (14) frac_exp -> . frac_exp PLUS frac_term
+    (15) frac_exp -> . frac_exp MINUS frac_term
+    (16) frac_exp -> . frac_term
+    (32) float_exp -> . frac_exp PLUS float_term
+    (33) float_exp -> . frac_exp MINUS float_term
+    (34) float_exp -> . float_exp PLUS frac_term
+    (35) float_exp -> . float_exp MINUS frac_term
+    (36) float_exp -> . float_exp PLUS float_term
+    (37) float_exp -> . float_exp MINUS float_term
+    (38) float_exp -> . float_term
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (39) float_term -> . frac_term TIMES float_atom
+    (40) float_term -> . frac_term DIVIDE float_atom
+    (41) float_term -> . float_term TIMES frac_atom
+    (42) float_term -> . float_term DIVIDE frac_atom
+    (43) float_term -> . float_term TIMES float_atom
+    (44) float_term -> . float_term DIVIDE float_atom
+    (45) float_term -> . float_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 105
+    COMPLEX         shift and go to state 26
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    unary_function                 shift and go to state 28
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    frac_exp                       shift and go to state 41
+    int_function                   shift and go to state 16
+    num                            shift and go to state 85
+    float_term                     shift and go to state 13
+    float_exp                      shift and go to state 45
+    vector                         shift and go to state 42
+    trig_function                  shift and go to state 33
+    float_atom                     shift and go to state 35
+    binary_function                shift and go to state 27
+    frac_term                      shift and go to state 17
+
+state 106
+
+    (37) float_exp -> float_exp MINUS float_term .
+    (41) float_term -> float_term . TIMES frac_atom
+    (42) float_term -> float_term . DIVIDE frac_atom
+    (43) float_term -> float_term . TIMES float_atom
+    (44) float_term -> float_term . DIVIDE float_atom
+
+    PLUS            reduce using rule 37 (float_exp -> float_exp MINUS float_term .)
+    MINUS           reduce using rule 37 (float_exp -> float_exp MINUS float_term .)
+    $end            reduce using rule 37 (float_exp -> float_exp MINUS float_term .)
+    RPAREN          reduce using rule 37 (float_exp -> float_exp MINUS float_term .)
+    COMMA           reduce using rule 37 (float_exp -> float_exp MINUS float_term .)
+    TIMES           shift and go to state 63
+    DIVIDE          shift and go to state 62
+
+
+state 107
+
+    (35) float_exp -> float_exp MINUS frac_term .
+    (17) frac_term -> frac_term . TIMES frac_atom
+    (18) frac_term -> frac_term . DIVIDE frac_atom
+    (39) float_term -> frac_term . TIMES float_atom
+    (40) float_term -> frac_term . DIVIDE float_atom
+
+    PLUS            reduce using rule 35 (float_exp -> float_exp MINUS frac_term .)
+    MINUS           reduce using rule 35 (float_exp -> float_exp MINUS frac_term .)
+    $end            reduce using rule 35 (float_exp -> float_exp MINUS frac_term .)
+    RPAREN          reduce using rule 35 (float_exp -> float_exp MINUS frac_term .)
+    COMMA           reduce using rule 35 (float_exp -> float_exp MINUS frac_term .)
+    TIMES           shift and go to state 68
+    DIVIDE          shift and go to state 67
+
+
+state 108
+
+    (36) float_exp -> float_exp PLUS float_term .
+    (41) float_term -> float_term . TIMES frac_atom
+    (42) float_term -> float_term . DIVIDE frac_atom
+    (43) float_term -> float_term . TIMES float_atom
+    (44) float_term -> float_term . DIVIDE float_atom
+
+    PLUS            reduce using rule 36 (float_exp -> float_exp PLUS float_term .)
+    MINUS           reduce using rule 36 (float_exp -> float_exp PLUS float_term .)
+    $end            reduce using rule 36 (float_exp -> float_exp PLUS float_term .)
+    RPAREN          reduce using rule 36 (float_exp -> float_exp PLUS float_term .)
+    COMMA           reduce using rule 36 (float_exp -> float_exp PLUS float_term .)
+    TIMES           shift and go to state 63
+    DIVIDE          shift and go to state 62
+
+
+state 109
+
+    (34) float_exp -> float_exp PLUS frac_term .
+    (17) frac_term -> frac_term . TIMES frac_atom
+    (18) frac_term -> frac_term . DIVIDE frac_atom
+    (39) float_term -> frac_term . TIMES float_atom
+    (40) float_term -> frac_term . DIVIDE float_atom
+
+    PLUS            reduce using rule 34 (float_exp -> float_exp PLUS frac_term .)
+    MINUS           reduce using rule 34 (float_exp -> float_exp PLUS frac_term .)
+    $end            reduce using rule 34 (float_exp -> float_exp PLUS frac_term .)
+    RPAREN          reduce using rule 34 (float_exp -> float_exp PLUS frac_term .)
+    COMMA           reduce using rule 34 (float_exp -> float_exp PLUS frac_term .)
+    TIMES           shift and go to state 68
+    DIVIDE          shift and go to state 67
+
+
+state 110
+
+    (42) float_term -> float_term DIVIDE frac_atom .
+
+    TIMES           reduce using rule 42 (float_term -> float_term DIVIDE frac_atom .)
+    DIVIDE          reduce using rule 42 (float_term -> float_term DIVIDE frac_atom .)
+    PLUS            reduce using rule 42 (float_term -> float_term DIVIDE frac_atom .)
+    MINUS           reduce using rule 42 (float_term -> float_term DIVIDE frac_atom .)
+    $end            reduce using rule 42 (float_term -> float_term DIVIDE frac_atom .)
+    RPAREN          reduce using rule 42 (float_term -> float_term DIVIDE frac_atom .)
+    COMMA           reduce using rule 42 (float_term -> float_term DIVIDE frac_atom .)
+
+
+state 111
+
+    (44) float_term -> float_term DIVIDE float_atom .
+
+    TIMES           reduce using rule 44 (float_term -> float_term DIVIDE float_atom .)
+    DIVIDE          reduce using rule 44 (float_term -> float_term DIVIDE float_atom .)
+    PLUS            reduce using rule 44 (float_term -> float_term DIVIDE float_atom .)
+    MINUS           reduce using rule 44 (float_term -> float_term DIVIDE float_atom .)
+    $end            reduce using rule 44 (float_term -> float_term DIVIDE float_atom .)
+    RPAREN          reduce using rule 44 (float_term -> float_term DIVIDE float_atom .)
+    COMMA           reduce using rule 44 (float_term -> float_term DIVIDE float_atom .)
+
+
+state 112
+
+    (41) float_term -> float_term TIMES frac_atom .
+
+    TIMES           reduce using rule 41 (float_term -> float_term TIMES frac_atom .)
+    DIVIDE          reduce using rule 41 (float_term -> float_term TIMES frac_atom .)
+    PLUS            reduce using rule 41 (float_term -> float_term TIMES frac_atom .)
+    MINUS           reduce using rule 41 (float_term -> float_term TIMES frac_atom .)
+    $end            reduce using rule 41 (float_term -> float_term TIMES frac_atom .)
+    RPAREN          reduce using rule 41 (float_term -> float_term TIMES frac_atom .)
+    COMMA           reduce using rule 41 (float_term -> float_term TIMES frac_atom .)
+
+
+state 113
+
+    (43) float_term -> float_term TIMES float_atom .
+
+    TIMES           reduce using rule 43 (float_term -> float_term TIMES float_atom .)
+    DIVIDE          reduce using rule 43 (float_term -> float_term TIMES float_atom .)
+    PLUS            reduce using rule 43 (float_term -> float_term TIMES float_atom .)
+    MINUS           reduce using rule 43 (float_term -> float_term TIMES float_atom .)
+    $end            reduce using rule 43 (float_term -> float_term TIMES float_atom .)
+    RPAREN          reduce using rule 43 (float_term -> float_term TIMES float_atom .)
+    COMMA           reduce using rule 43 (float_term -> float_term TIMES float_atom .)
+
+
+state 114
+
+    (13) lstsq_exp -> LS MINUS point_list .
+
+    $end            reduce using rule 13 (lstsq_exp -> LS MINUS point_list .)
+    RPAREN          reduce using rule 13 (lstsq_exp -> LS MINUS point_list .)
+    COMMA           reduce using rule 13 (lstsq_exp -> LS MINUS point_list .)
+
+
+state 115
+
+    (18) frac_term -> frac_term DIVIDE frac_atom .
+
+    TIMES           reduce using rule 18 (frac_term -> frac_term DIVIDE frac_atom .)
+    DIVIDE          reduce using rule 18 (frac_term -> frac_term DIVIDE frac_atom .)
+    RPAREN          reduce using rule 18 (frac_term -> frac_term DIVIDE frac_atom .)
+    PLUS            reduce using rule 18 (frac_term -> frac_term DIVIDE frac_atom .)
+    MINUS           reduce using rule 18 (frac_term -> frac_term DIVIDE frac_atom .)
+    COMMA           reduce using rule 18 (frac_term -> frac_term DIVIDE frac_atom .)
+    $end            reduce using rule 18 (frac_term -> frac_term DIVIDE frac_atom .)
+
+
+state 116
+
+    (40) float_term -> frac_term DIVIDE float_atom .
+
+    TIMES           reduce using rule 40 (float_term -> frac_term DIVIDE float_atom .)
+    DIVIDE          reduce using rule 40 (float_term -> frac_term DIVIDE float_atom .)
+    PLUS            reduce using rule 40 (float_term -> frac_term DIVIDE float_atom .)
+    MINUS           reduce using rule 40 (float_term -> frac_term DIVIDE float_atom .)
+    $end            reduce using rule 40 (float_term -> frac_term DIVIDE float_atom .)
+    RPAREN          reduce using rule 40 (float_term -> frac_term DIVIDE float_atom .)
+    COMMA           reduce using rule 40 (float_term -> frac_term DIVIDE float_atom .)
+
+
+state 117
+
+    (17) frac_term -> frac_term TIMES frac_atom .
+
+    TIMES           reduce using rule 17 (frac_term -> frac_term TIMES frac_atom .)
+    DIVIDE          reduce using rule 17 (frac_term -> frac_term TIMES frac_atom .)
+    RPAREN          reduce using rule 17 (frac_term -> frac_term TIMES frac_atom .)
+    PLUS            reduce using rule 17 (frac_term -> frac_term TIMES frac_atom .)
+    MINUS           reduce using rule 17 (frac_term -> frac_term TIMES frac_atom .)
+    COMMA           reduce using rule 17 (frac_term -> frac_term TIMES frac_atom .)
+    $end            reduce using rule 17 (frac_term -> frac_term TIMES frac_atom .)
+
+
+state 118
+
+    (39) float_term -> frac_term TIMES float_atom .
+
+    TIMES           reduce using rule 39 (float_term -> frac_term TIMES float_atom .)
+    DIVIDE          reduce using rule 39 (float_term -> frac_term TIMES float_atom .)
+    PLUS            reduce using rule 39 (float_term -> frac_term TIMES float_atom .)
+    MINUS           reduce using rule 39 (float_term -> frac_term TIMES float_atom .)
+    $end            reduce using rule 39 (float_term -> frac_term TIMES float_atom .)
+    RPAREN          reduce using rule 39 (float_term -> frac_term TIMES float_atom .)
+    COMMA           reduce using rule 39 (float_term -> frac_term TIMES float_atom .)
+
+
+state 119
+
+    (28) poly_term -> poly_term TIMES poly_atom .
+
+    TIMES           reduce using rule 28 (poly_term -> poly_term TIMES poly_atom .)
+    RPAREN          reduce using rule 28 (poly_term -> poly_term TIMES poly_atom .)
+    PLUS            reduce using rule 28 (poly_term -> poly_term TIMES poly_atom .)
+    MINUS           reduce using rule 28 (poly_term -> poly_term TIMES poly_atom .)
+    $end            reduce using rule 28 (poly_term -> poly_term TIMES poly_atom .)
+    COMMA           reduce using rule 28 (poly_term -> poly_term TIMES poly_atom .)
+
+
+state 120
+
+    (64) vector_builder -> vector_builder COMMA num .
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+
+    RBRACK          reduce using rule 64 (vector_builder -> vector_builder COMMA num .)
+    COMMA           reduce using rule 64 (vector_builder -> vector_builder COMMA num .)
+    EXP             shift and go to state 58
+
+
+state 121
+
+    (32) float_exp -> frac_exp PLUS float_term .
+    (41) float_term -> float_term . TIMES frac_atom
+    (42) float_term -> float_term . DIVIDE frac_atom
+    (43) float_term -> float_term . TIMES float_atom
+    (44) float_term -> float_term . DIVIDE float_atom
+
+    PLUS            reduce using rule 32 (float_exp -> frac_exp PLUS float_term .)
+    MINUS           reduce using rule 32 (float_exp -> frac_exp PLUS float_term .)
+    $end            reduce using rule 32 (float_exp -> frac_exp PLUS float_term .)
+    RPAREN          reduce using rule 32 (float_exp -> frac_exp PLUS float_term .)
+    COMMA           reduce using rule 32 (float_exp -> frac_exp PLUS float_term .)
+    TIMES           shift and go to state 63
+    DIVIDE          shift and go to state 62
+
+
+state 122
+
+    (14) frac_exp -> frac_exp PLUS frac_term .
+    (17) frac_term -> frac_term . TIMES frac_atom
+    (18) frac_term -> frac_term . DIVIDE frac_atom
+    (39) float_term -> frac_term . TIMES float_atom
+    (40) float_term -> frac_term . DIVIDE float_atom
+
+    PLUS            reduce using rule 14 (frac_exp -> frac_exp PLUS frac_term .)
+    MINUS           reduce using rule 14 (frac_exp -> frac_exp PLUS frac_term .)
+    $end            reduce using rule 14 (frac_exp -> frac_exp PLUS frac_term .)
+    RPAREN          reduce using rule 14 (frac_exp -> frac_exp PLUS frac_term .)
+    COMMA           reduce using rule 14 (frac_exp -> frac_exp PLUS frac_term .)
+    TIMES           shift and go to state 68
+    DIVIDE          shift and go to state 67
+
+
+state 123
+
+    (33) float_exp -> frac_exp MINUS float_term .
+    (41) float_term -> float_term . TIMES frac_atom
+    (42) float_term -> float_term . DIVIDE frac_atom
+    (43) float_term -> float_term . TIMES float_atom
+    (44) float_term -> float_term . DIVIDE float_atom
+
+    PLUS            reduce using rule 33 (float_exp -> frac_exp MINUS float_term .)
+    MINUS           reduce using rule 33 (float_exp -> frac_exp MINUS float_term .)
+    $end            reduce using rule 33 (float_exp -> frac_exp MINUS float_term .)
+    RPAREN          reduce using rule 33 (float_exp -> frac_exp MINUS float_term .)
+    COMMA           reduce using rule 33 (float_exp -> frac_exp MINUS float_term .)
+    TIMES           shift and go to state 63
+    DIVIDE          shift and go to state 62
+
+
+state 124
+
+    (15) frac_exp -> frac_exp MINUS frac_term .
+    (17) frac_term -> frac_term . TIMES frac_atom
+    (18) frac_term -> frac_term . DIVIDE frac_atom
+    (39) float_term -> frac_term . TIMES float_atom
+    (40) float_term -> frac_term . DIVIDE float_atom
+
+    PLUS            reduce using rule 15 (frac_exp -> frac_exp MINUS frac_term .)
+    MINUS           reduce using rule 15 (frac_exp -> frac_exp MINUS frac_term .)
+    $end            reduce using rule 15 (frac_exp -> frac_exp MINUS frac_term .)
+    RPAREN          reduce using rule 15 (frac_exp -> frac_exp MINUS frac_term .)
+    COMMA           reduce using rule 15 (frac_exp -> frac_exp MINUS frac_term .)
+    TIMES           shift and go to state 68
+    DIVIDE          shift and go to state 67
+
+
+state 125
+
+    (51) unary_function -> FUN LPAREN exp . RPAREN
+    (52) binary_function -> FUN LPAREN exp . COMMA exp RPAREN
+
+    RPAREN          shift and go to state 147
+    COMMA           shift and go to state 148
+
+
+state 126
+
+    (61) vector_cross -> vector_cross TIMES num .
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+
+    TIMES           reduce using rule 61 (vector_cross -> vector_cross TIMES num .)
+    PLUS            reduce using rule 61 (vector_cross -> vector_cross TIMES num .)
+    MINUS           reduce using rule 61 (vector_cross -> vector_cross TIMES num .)
+    $end            reduce using rule 61 (vector_cross -> vector_cross TIMES num .)
+    RPAREN          reduce using rule 61 (vector_cross -> vector_cross TIMES num .)
+    COMMA           reduce using rule 61 (vector_cross -> vector_cross TIMES num .)
+    EXP             shift and go to state 58
+
+
+state 127
+
+    (60) vector_cross -> vector_cross TIMES vector .
+    (78) num -> vector . vector
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    TIMES           reduce using rule 60 (vector_cross -> vector_cross TIMES vector .)
+    PLUS            reduce using rule 60 (vector_cross -> vector_cross TIMES vector .)
+    MINUS           reduce using rule 60 (vector_cross -> vector_cross TIMES vector .)
+    $end            reduce using rule 60 (vector_cross -> vector_cross TIMES vector .)
+    RPAREN          reduce using rule 60 (vector_cross -> vector_cross TIMES vector .)
+    COMMA           reduce using rule 60 (vector_cross -> vector_cross TIMES vector .)
+    LBRACK          shift and go to state 19
+
+    vector                         shift and go to state 64
+    vector_builder                 shift and go to state 20
+
+state 128
+
+    (62) vector_cross -> vector .
+
+    TIMES           reduce using rule 62 (vector_cross -> vector .)
+    PLUS            reduce using rule 62 (vector_cross -> vector .)
+    MINUS           reduce using rule 62 (vector_cross -> vector .)
+    $end            reduce using rule 62 (vector_cross -> vector .)
+    RPAREN          reduce using rule 62 (vector_cross -> vector .)
+    COMMA           reduce using rule 62 (vector_cross -> vector .)
+
+
+state 129
+
+    (57) vector_exp -> vector_exp PLUS vector_cross .
+    (60) vector_cross -> vector_cross . TIMES vector
+    (61) vector_cross -> vector_cross . TIMES num
+
+    PLUS            reduce using rule 57 (vector_exp -> vector_exp PLUS vector_cross .)
+    MINUS           reduce using rule 57 (vector_exp -> vector_exp PLUS vector_cross .)
+    $end            reduce using rule 57 (vector_exp -> vector_exp PLUS vector_cross .)
+    RPAREN          reduce using rule 57 (vector_exp -> vector_exp PLUS vector_cross .)
+    COMMA           reduce using rule 57 (vector_exp -> vector_exp PLUS vector_cross .)
+    TIMES           shift and go to state 77
+
+
+state 130
+
+    (58) vector_exp -> vector_exp MINUS vector_cross .
+    (60) vector_cross -> vector_cross . TIMES vector
+    (61) vector_cross -> vector_cross . TIMES num
+
+    PLUS            reduce using rule 58 (vector_exp -> vector_exp MINUS vector_cross .)
+    MINUS           reduce using rule 58 (vector_exp -> vector_exp MINUS vector_cross .)
+    $end            reduce using rule 58 (vector_exp -> vector_exp MINUS vector_cross .)
+    RPAREN          reduce using rule 58 (vector_exp -> vector_exp MINUS vector_cross .)
+    COMMA           reduce using rule 58 (vector_exp -> vector_exp MINUS vector_cross .)
+    TIMES           shift and go to state 77
+
+
+state 131
+
+    (8) exp -> poly_atom S LPAREN . INT COMMA INT RPAREN
+
+    INT             shift and go to state 149
+
+
+state 132
+
+    (22) frac_atom -> LPAREN frac_exp . RPAREN
+    (14) frac_exp -> frac_exp . PLUS frac_term
+    (15) frac_exp -> frac_exp . MINUS frac_term
+
+    RPAREN          shift and go to state 93
+    PLUS            shift and go to state 142
+    MINUS           shift and go to state 141
+
+
+state 133
+
+    (9) exp -> poly_atom I LPAREN . INT COMMA INT RPAREN
+
+    INT             shift and go to state 150
+
+
+state 134
+
+    (79) deg -> INT DEGREE .
+
+    RPAREN          reduce using rule 79 (deg -> INT DEGREE .)
+
+
+state 135
+
+    (56) trig_function -> TRIGFUN LPAREN deg RPAREN .
+
+    TIMES           reduce using rule 56 (trig_function -> TRIGFUN LPAREN deg RPAREN .)
+    DIVIDE          reduce using rule 56 (trig_function -> TRIGFUN LPAREN deg RPAREN .)
+    PLUS            reduce using rule 56 (trig_function -> TRIGFUN LPAREN deg RPAREN .)
+    MINUS           reduce using rule 56 (trig_function -> TRIGFUN LPAREN deg RPAREN .)
+    $end            reduce using rule 56 (trig_function -> TRIGFUN LPAREN deg RPAREN .)
+    RPAREN          reduce using rule 56 (trig_function -> TRIGFUN LPAREN deg RPAREN .)
+    COMMA           reduce using rule 56 (trig_function -> TRIGFUN LPAREN deg RPAREN .)
+
+
+state 136
+
+    (55) trig_function -> TRIGFUN LPAREN exp RPAREN .
+
+    TIMES           reduce using rule 55 (trig_function -> TRIGFUN LPAREN exp RPAREN .)
+    DIVIDE          reduce using rule 55 (trig_function -> TRIGFUN LPAREN exp RPAREN .)
+    PLUS            reduce using rule 55 (trig_function -> TRIGFUN LPAREN exp RPAREN .)
+    MINUS           reduce using rule 55 (trig_function -> TRIGFUN LPAREN exp RPAREN .)
+    $end            reduce using rule 55 (trig_function -> TRIGFUN LPAREN exp RPAREN .)
+    RPAREN          reduce using rule 55 (trig_function -> TRIGFUN LPAREN exp RPAREN .)
+    COMMA           reduce using rule 55 (trig_function -> TRIGFUN LPAREN exp RPAREN .)
+
+
+state 137
+
+    (80) deg -> FLOAT DEGREE .
+
+    RPAREN          reduce using rule 80 (deg -> FLOAT DEGREE .)
+
+
+state 138
+
+    (68) point_list_builder -> LBRACK LPAREN num . COMMA num RPAREN
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+
+    COMMA           shift and go to state 151
+    EXP             shift and go to state 58
+
+
+state 139
+
+    (67) point_list_builder -> point_list_builder COMMA LPAREN . num COMMA num RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 152
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    vector                         shift and go to state 42
+
+state 140
+
+    (53) int_function -> INTFUN LPAREN INT COMMA . INT RPAREN
+
+    INT             shift and go to state 153
+
+
+state 141
+
+    (15) frac_exp -> frac_exp MINUS . frac_term
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 82
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 85
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    int_function                   shift and go to state 16
+    vector                         shift and go to state 42
+    frac_term                      shift and go to state 154
+
+state 142
+
+    (14) frac_exp -> frac_exp PLUS . frac_term
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 82
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 85
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    int_function                   shift and go to state 16
+    vector                         shift and go to state 42
+    frac_term                      shift and go to state 155
+
+state 143
+
+    (54) fraction_expr -> FRAC LPAREN frac_exp COMMA . frac_exp RPAREN
+    (14) frac_exp -> . frac_exp PLUS frac_term
+    (15) frac_exp -> . frac_exp MINUS frac_term
+    (16) frac_exp -> . frac_term
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 82
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 85
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 9
+    frac_exp                       shift and go to state 156
+    int_function                   shift and go to state 16
+    vector                         shift and go to state 42
+    frac_term                      shift and go to state 101
+
+state 144
+
+    (18) frac_term -> frac_term DIVIDE . frac_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 82
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 85
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 115
+    int_function                   shift and go to state 16
+    vector                         shift and go to state 42
+
+state 145
+
+    (17) frac_term -> frac_term TIMES . frac_atom
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    LPAREN          shift and go to state 82
+    INTFUN          shift and go to state 7
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 85
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    frac_atom                      shift and go to state 117
+    int_function                   shift and go to state 16
+    vector                         shift and go to state 42
+
+state 146
+
+    (77) num -> num EXP MINUS INT .
+
+    X               reduce using rule 77 (num -> num EXP MINUS INT .)
+    EXP             reduce using rule 77 (num -> num EXP MINUS INT .)
+    COMMA           reduce using rule 77 (num -> num EXP MINUS INT .)
+    TIMES           reduce using rule 77 (num -> num EXP MINUS INT .)
+    DIVIDE          reduce using rule 77 (num -> num EXP MINUS INT .)
+    RPAREN          reduce using rule 77 (num -> num EXP MINUS INT .)
+    PLUS            reduce using rule 77 (num -> num EXP MINUS INT .)
+    MINUS           reduce using rule 77 (num -> num EXP MINUS INT .)
+    $end            reduce using rule 77 (num -> num EXP MINUS INT .)
+    RBRACK          reduce using rule 77 (num -> num EXP MINUS INT .)
+
+
+state 147
+
+    (51) unary_function -> FUN LPAREN exp RPAREN .
+
+    TIMES           reduce using rule 51 (unary_function -> FUN LPAREN exp RPAREN .)
+    DIVIDE          reduce using rule 51 (unary_function -> FUN LPAREN exp RPAREN .)
+    PLUS            reduce using rule 51 (unary_function -> FUN LPAREN exp RPAREN .)
+    MINUS           reduce using rule 51 (unary_function -> FUN LPAREN exp RPAREN .)
+    $end            reduce using rule 51 (unary_function -> FUN LPAREN exp RPAREN .)
+    RPAREN          reduce using rule 51 (unary_function -> FUN LPAREN exp RPAREN .)
+    COMMA           reduce using rule 51 (unary_function -> FUN LPAREN exp RPAREN .)
+
+
+state 148
+
+    (52) binary_function -> FUN LPAREN exp COMMA . exp RPAREN
+    (1) exp -> . frac_exp
+    (2) exp -> . float_exp
+    (3) exp -> . poly_exp
+    (4) exp -> . vector_exp
+    (5) exp -> . interp_exp
+    (6) exp -> . lstsq_exp
+    (7) exp -> . poly_atom frac_atom
+    (8) exp -> . poly_atom S LPAREN INT COMMA INT RPAREN
+    (9) exp -> . poly_atom I LPAREN INT COMMA INT RPAREN
+    (14) frac_exp -> . frac_exp PLUS frac_term
+    (15) frac_exp -> . frac_exp MINUS frac_term
+    (16) frac_exp -> . frac_term
+    (32) float_exp -> . frac_exp PLUS float_term
+    (33) float_exp -> . frac_exp MINUS float_term
+    (34) float_exp -> . float_exp PLUS frac_term
+    (35) float_exp -> . float_exp MINUS frac_term
+    (36) float_exp -> . float_exp PLUS float_term
+    (37) float_exp -> . float_exp MINUS float_term
+    (38) float_exp -> . float_term
+    (23) poly_exp -> . poly_exp PLUS poly_term
+    (24) poly_exp -> . poly_exp MINUS poly_term
+    (25) poly_exp -> . poly_term
+    (26) poly_exp -> . D poly_atom
+    (27) poly_exp -> . I poly_atom
+    (57) vector_exp -> . vector_exp PLUS vector_cross
+    (58) vector_exp -> . vector_exp MINUS vector_cross
+    (59) vector_exp -> . vector_cross
+    (10) interp_exp -> . IP point_list
+    (11) interp_exp -> . IP INT point_list
+    (12) lstsq_exp -> . LS point_list
+    (13) lstsq_exp -> . LS MINUS point_list
+    (30) poly_atom -> . num X INT
+    (31) poly_atom -> . LPAREN poly_exp RPAREN
+    (17) frac_term -> . frac_term TIMES frac_atom
+    (18) frac_term -> . frac_term DIVIDE frac_atom
+    (19) frac_term -> . frac_atom
+    (39) float_term -> . frac_term TIMES float_atom
+    (40) float_term -> . frac_term DIVIDE float_atom
+    (41) float_term -> . float_term TIMES frac_atom
+    (42) float_term -> . float_term DIVIDE frac_atom
+    (43) float_term -> . float_term TIMES float_atom
+    (44) float_term -> . float_term DIVIDE float_atom
+    (45) float_term -> . float_atom
+    (28) poly_term -> . poly_term TIMES poly_atom
+    (29) poly_term -> . poly_atom
+    (60) vector_cross -> . vector_cross TIMES vector
+    (61) vector_cross -> . vector_cross TIMES num
+    (62) vector_cross -> . vector
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (20) frac_atom -> . int_function
+    (21) frac_atom -> . num
+    (22) frac_atom -> . LPAREN frac_exp RPAREN
+    (46) float_atom -> . unary_function
+    (47) float_atom -> . binary_function
+    (48) float_atom -> . trig_function
+    (49) float_atom -> . LPAREN float_exp RPAREN
+    (50) float_atom -> . COMPLEX
+    (63) vector -> . vector_builder RBRACK
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (53) int_function -> . INTFUN LPAREN INT COMMA INT RPAREN
+    (51) unary_function -> . FUN LPAREN exp RPAREN
+    (52) binary_function -> . FUN LPAREN exp COMMA exp RPAREN
+    (55) trig_function -> . TRIGFUN LPAREN exp RPAREN
+    (56) trig_function -> . TRIGFUN LPAREN deg RPAREN
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    D               shift and go to state 6
+    I               shift and go to state 30
+    IP              shift and go to state 4
+    LS              shift and go to state 15
+    LPAREN          shift and go to state 3
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    COMPLEX         shift and go to state 26
+    FRAC            shift and go to state 8
+    INTFUN          shift and go to state 7
+    FUN             shift and go to state 24
+    TRIGFUN         shift and go to state 1
+    LBRACK          shift and go to state 19
+
+    poly_exp                       shift and go to state 2
+    fraction_expr                  shift and go to state 21
+    frac_exp                       shift and go to state 22
+    int_function                   shift and go to state 16
+    poly_term                      shift and go to state 18
+    trig_function                  shift and go to state 33
+    vector                         shift and go to state 14
+    binary_function                shift and go to state 27
+    vector_builder                 shift and go to state 20
+    unary_function                 shift and go to state 28
+    frac_atom                      shift and go to state 9
+    vector_exp                     shift and go to state 29
+    interp_exp                     shift and go to state 10
+    lstsq_exp                      shift and go to state 31
+    num                            shift and go to state 11
+    float_exp                      shift and go to state 12
+    poly_atom                      shift and go to state 32
+    float_term                     shift and go to state 13
+    float_atom                     shift and go to state 35
+    exp                            shift and go to state 157
+    vector_cross                   shift and go to state 25
+    frac_term                      shift and go to state 17
+
+state 149
+
+    (8) exp -> poly_atom S LPAREN INT . COMMA INT RPAREN
+
+    COMMA           shift and go to state 158
+
+
+state 150
+
+    (9) exp -> poly_atom I LPAREN INT . COMMA INT RPAREN
+
+    COMMA           shift and go to state 159
+
+
+state 151
+
+    (68) point_list_builder -> LBRACK LPAREN num COMMA . num RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 160
+    vector                         shift and go to state 42
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+
+state 152
+
+    (67) point_list_builder -> point_list_builder COMMA LPAREN num . COMMA num RPAREN
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+
+    COMMA           shift and go to state 161
+    EXP             shift and go to state 58
+
+
+state 153
+
+    (53) int_function -> INTFUN LPAREN INT COMMA INT . RPAREN
+
+    RPAREN          shift and go to state 162
+
+
+state 154
+
+    (15) frac_exp -> frac_exp MINUS frac_term .
+    (17) frac_term -> frac_term . TIMES frac_atom
+    (18) frac_term -> frac_term . DIVIDE frac_atom
+
+    COMMA           reduce using rule 15 (frac_exp -> frac_exp MINUS frac_term .)
+    PLUS            reduce using rule 15 (frac_exp -> frac_exp MINUS frac_term .)
+    MINUS           reduce using rule 15 (frac_exp -> frac_exp MINUS frac_term .)
+    RPAREN          reduce using rule 15 (frac_exp -> frac_exp MINUS frac_term .)
+    TIMES           shift and go to state 145
+    DIVIDE          shift and go to state 144
+
+
+state 155
+
+    (14) frac_exp -> frac_exp PLUS frac_term .
+    (17) frac_term -> frac_term . TIMES frac_atom
+    (18) frac_term -> frac_term . DIVIDE frac_atom
+
+    COMMA           reduce using rule 14 (frac_exp -> frac_exp PLUS frac_term .)
+    PLUS            reduce using rule 14 (frac_exp -> frac_exp PLUS frac_term .)
+    MINUS           reduce using rule 14 (frac_exp -> frac_exp PLUS frac_term .)
+    RPAREN          reduce using rule 14 (frac_exp -> frac_exp PLUS frac_term .)
+    TIMES           shift and go to state 145
+    DIVIDE          shift and go to state 144
+
+
+state 156
+
+    (54) fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp . RPAREN
+    (14) frac_exp -> frac_exp . PLUS frac_term
+    (15) frac_exp -> frac_exp . MINUS frac_term
+
+    RPAREN          shift and go to state 163
+    PLUS            shift and go to state 142
+    MINUS           shift and go to state 141
+
+
+state 157
+
+    (52) binary_function -> FUN LPAREN exp COMMA exp . RPAREN
+
+    RPAREN          shift and go to state 164
+
+
+state 158
+
+    (8) exp -> poly_atom S LPAREN INT COMMA . INT RPAREN
+
+    INT             shift and go to state 165
+
+
+state 159
+
+    (9) exp -> poly_atom I LPAREN INT COMMA . INT RPAREN
+
+    INT             shift and go to state 166
+
+
+state 160
+
+    (68) point_list_builder -> LBRACK LPAREN num COMMA num . RPAREN
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+
+    RPAREN          shift and go to state 167
+    EXP             shift and go to state 58
+
+
+state 161
+
+    (67) point_list_builder -> point_list_builder COMMA LPAREN num COMMA . num RPAREN
+    (69) num -> . INT
+    (70) num -> . FLOAT
+    (71) num -> . fraction_expr
+    (72) num -> . MINUS INT
+    (73) num -> . MINUS FLOAT
+    (74) num -> . MINUS fraction_expr
+    (75) num -> . INT EXL
+    (76) num -> . num EXP INT
+    (77) num -> . num EXP MINUS INT
+    (78) num -> . vector vector
+    (54) fraction_expr -> . FRAC LPAREN frac_exp COMMA frac_exp RPAREN
+    (63) vector -> . vector_builder RBRACK
+    (64) vector_builder -> . vector_builder COMMA num
+    (65) vector_builder -> . LBRACK num
+
+    INT             shift and go to state 23
+    FLOAT           shift and go to state 36
+    MINUS           shift and go to state 5
+    FRAC            shift and go to state 8
+    LBRACK          shift and go to state 19
+
+    num                            shift and go to state 168
+    vector_builder                 shift and go to state 20
+    fraction_expr                  shift and go to state 21
+    vector                         shift and go to state 42
+
+state 162
+
+    (53) int_function -> INTFUN LPAREN INT COMMA INT RPAREN .
+
+    TIMES           reduce using rule 53 (int_function -> INTFUN LPAREN INT COMMA INT RPAREN .)
+    DIVIDE          reduce using rule 53 (int_function -> INTFUN LPAREN INT COMMA INT RPAREN .)
+    COMMA           reduce using rule 53 (int_function -> INTFUN LPAREN INT COMMA INT RPAREN .)
+    PLUS            reduce using rule 53 (int_function -> INTFUN LPAREN INT COMMA INT RPAREN .)
+    MINUS           reduce using rule 53 (int_function -> INTFUN LPAREN INT COMMA INT RPAREN .)
+    RPAREN          reduce using rule 53 (int_function -> INTFUN LPAREN INT COMMA INT RPAREN .)
+    $end            reduce using rule 53 (int_function -> INTFUN LPAREN INT COMMA INT RPAREN .)
+
+
+state 163
+
+    (54) fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .
+
+    COMMA           reduce using rule 54 (fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .)
+    EXP             reduce using rule 54 (fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .)
+    X               reduce using rule 54 (fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .)
+    TIMES           reduce using rule 54 (fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .)
+    DIVIDE          reduce using rule 54 (fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .)
+    PLUS            reduce using rule 54 (fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .)
+    MINUS           reduce using rule 54 (fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .)
+    $end            reduce using rule 54 (fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .)
+    RPAREN          reduce using rule 54 (fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .)
+    RBRACK          reduce using rule 54 (fraction_expr -> FRAC LPAREN frac_exp COMMA frac_exp RPAREN .)
+
+
+state 164
+
+    (52) binary_function -> FUN LPAREN exp COMMA exp RPAREN .
+
+    TIMES           reduce using rule 52 (binary_function -> FUN LPAREN exp COMMA exp RPAREN .)
+    DIVIDE          reduce using rule 52 (binary_function -> FUN LPAREN exp COMMA exp RPAREN .)
+    PLUS            reduce using rule 52 (binary_function -> FUN LPAREN exp COMMA exp RPAREN .)
+    MINUS           reduce using rule 52 (binary_function -> FUN LPAREN exp COMMA exp RPAREN .)
+    $end            reduce using rule 52 (binary_function -> FUN LPAREN exp COMMA exp RPAREN .)
+    RPAREN          reduce using rule 52 (binary_function -> FUN LPAREN exp COMMA exp RPAREN .)
+    COMMA           reduce using rule 52 (binary_function -> FUN LPAREN exp COMMA exp RPAREN .)
+
+
+state 165
+
+    (8) exp -> poly_atom S LPAREN INT COMMA INT . RPAREN
+
+    RPAREN          shift and go to state 169
+
+
+state 166
+
+    (9) exp -> poly_atom I LPAREN INT COMMA INT . RPAREN
+
+    RPAREN          shift and go to state 170
+
+
+state 167
+
+    (68) point_list_builder -> LBRACK LPAREN num COMMA num RPAREN .
+
+    RBRACK          reduce using rule 68 (point_list_builder -> LBRACK LPAREN num COMMA num RPAREN .)
+    COMMA           reduce using rule 68 (point_list_builder -> LBRACK LPAREN num COMMA num RPAREN .)
+
+
+state 168
+
+    (67) point_list_builder -> point_list_builder COMMA LPAREN num COMMA num . RPAREN
+    (76) num -> num . EXP INT
+    (77) num -> num . EXP MINUS INT
+
+    RPAREN          shift and go to state 171
+    EXP             shift and go to state 58
+
+
+state 169
+
+    (8) exp -> poly_atom S LPAREN INT COMMA INT RPAREN .
+
+    $end            reduce using rule 8 (exp -> poly_atom S LPAREN INT COMMA INT RPAREN .)
+    RPAREN          reduce using rule 8 (exp -> poly_atom S LPAREN INT COMMA INT RPAREN .)
+    COMMA           reduce using rule 8 (exp -> poly_atom S LPAREN INT COMMA INT RPAREN .)
+
+
+state 170
+
+    (9) exp -> poly_atom I LPAREN INT COMMA INT RPAREN .
+
+    $end            reduce using rule 9 (exp -> poly_atom I LPAREN INT COMMA INT RPAREN .)
+    RPAREN          reduce using rule 9 (exp -> poly_atom I LPAREN INT COMMA INT RPAREN .)
+    COMMA           reduce using rule 9 (exp -> poly_atom I LPAREN INT COMMA INT RPAREN .)
+
+
+state 171
+
+    (67) point_list_builder -> point_list_builder COMMA LPAREN num COMMA num RPAREN .
+
+    RBRACK          reduce using rule 67 (point_list_builder -> point_list_builder COMMA LPAREN num COMMA num RPAREN .)
+    COMMA           reduce using rule 67 (point_list_builder -> point_list_builder COMMA LPAREN num COMMA num RPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for MINUS in state 32 resolved as shift
