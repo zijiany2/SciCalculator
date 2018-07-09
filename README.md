@@ -1,6 +1,6 @@
 # SciCalculator
 A Python implementation of a scientific calculator
-![thumbnail] (./thumbnail.png)
+![thumbnail](./thumbnail.png)
 
 ## Dependencies
 [Python Lex-Yacc](https://github.com/dabeaz/ply)  
@@ -13,7 +13,7 @@ A Python implementation of a scientific calculator
 - [x] Complex number arithmetic
 
 ** Conversion:**
-- [x] decimals <=> friction
+- [x] decimals <=> fraction
 - [x] degree <=> radian
 - [x] polar <=> rectangular (for complex number)
 
